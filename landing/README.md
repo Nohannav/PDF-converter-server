@@ -54,9 +54,15 @@ purement absente — la page ne peut pas rester bloquée derrière un écran noi
 
 ## Mouvement
 
-Défilement inertiel (Lenis), révélations au clip-path, parallaxe, une seule
-section épinglée, bandeau piloté par la vélocité du scroll, flou progressif,
-et distorsion WebGL légère au survol des vignettes (Three.js).
+Défilement inertiel (Lenis), révélations au clip-path, parallaxe, bandeau piloté
+par la vélocité du scroll, flou progressif, et distorsion WebGL légère au survol
+des vignettes (Three.js).
+
+**Aucune section n'est épinglée.** La section « véhicule » utilise un collage CSS
+(`position:sticky`) : l'image accompagne la lecture des trois configurations sans
+jamais confisquer le défilement. Deux pièges à connaître si vous y touchez —
+`overflow-x:hidden` sur `body` neutralise `position:sticky`, et la règle sticky
+doit être déclarée *après* `.veh__media{position:relative}` pour l'emporter.
 
 Principe de robustesse : **l'état final est le défaut CSS**. Les animations
 partent d'un état absent (`gsap.from`) et n'y vont jamais. Si GSAP, Lenis ou

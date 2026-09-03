@@ -30,7 +30,7 @@
   --step-1:clamp(1.3rem,1.2rem + .5vw,1.6rem);
   --step-2:clamp(1.9rem,1.6rem + 1.4vw,2.9rem);
   --step-3:clamp(2.6rem,2rem + 3vw,4.6rem);
-  --step-4:clamp(3.2rem,2.2rem + 5.4vw,7.5rem);
+  --step-4:clamp(2.6rem,1.2rem + 7.2vw,7.5rem);
 
   --gutter:clamp(1.25rem,5vw,5.5rem);
   --rule:1px solid color-mix(in srgb,var(--ink) 16%,transparent);
@@ -43,7 +43,7 @@ body{
   margin:0; background:var(--paper); color:var(--ink);
   font-family:Archivo,"Helvetica Neue",Arial,sans-serif;
   font-size:var(--step-0); line-height:1.6; font-weight:300;
-  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
 }
 /* — surfaces du navigateur : elles font partie du design — */
 ::selection{background:var(--accent); color:var(--paper)}
@@ -213,7 +213,9 @@ html.intro-armed .hero{height:100svh}
   margin-top:clamp(2.5rem,7vh,5rem);
   display:grid; grid-template-columns:1fr; gap:clamp(1.6rem,4vw,4rem); align-items:center;
 }
-@media(min-width:960px){ .veh__stage{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)} }
+@media(min-width:960px){
+  .veh__stage{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); align-items:start}
+}
 .veh__media{position:relative; aspect-ratio:4/5; overflow:hidden; background:var(--ink-2)}
 .veh__media figure{position:absolute; inset:0; margin:0; clip-path:inset(0 0 100% 0)}
 .veh__media figure:first-child{clip-path:inset(0 0 0 0)}
@@ -232,6 +234,17 @@ html.intro-armed .hero{height:100svh}
 
 .veh__item .bar{
   position:absolute; left:0; top:-1px; height:2px; width:0; background:var(--accent-soft);
+}
+@media(min-width:960px){
+  /* Collage CSS plutôt qu'un pin : l'image accompagne la lecture sans
+     jamais confisquer le défilement. Déclaré après .veh__media pour
+     l'emporter sur son position:relative. */
+  .veh__media{
+    position:sticky; top:clamp(4.5rem,12vh,7rem);
+    aspect-ratio:auto; height:min(62vh,620px);   /* plus courte = colle plus longtemps */
+  }
+  /* chaque configuration a besoin de sa propre course de lecture */
+  .veh__item{min-height:50vh; display:flex; flex-direction:column; justify-content:center}
 }
 
 /* ---------- mobilier ---------- */
@@ -422,9 +435,9 @@ html.intro-armed .hero{height:100svh}
 
     <div class="hero__copy">
       <h1 class="hero__title">
-        <span class="ln"><span>Nous garons un bar</span></span>
-        <span class="ln"><span>de 1962 là où</span></span>
-        <span class="ln"><span><i>vous recevez.</i></span></span>
+        <span class="ln"><span>Nos véhicules</span></span>
+        <span class="ln"><span>évènementiels</span></span>
+        <span class="ln"><span><i>en location</i></span></span>
       </h1>
       <div class="hero__meta">
         <span class="label">Volkswagen T1 · 1962</span>
@@ -927,22 +940,14 @@ html.intro-armed .hero{height:100svh}
     }
     show(0);
 
-    ScrollTrigger.matchMedia({
-      '(min-width: 960px)': function () {
-        ScrollTrigger.create({
-          trigger: stage, start: 'center center', end: '+=' + (items.length * 62) + '%',
-          pin: true, pinSpacing: true, scrub: false,
-          onUpdate: function (self) {
-            var n = Math.min(items.length - 1, Math.floor(self.progress * items.length * 0.999));
-            show(n);
-          }
-        });
-      },
-      '(max-width: 959px)': function () {
-        items.forEach(function (it, i) {
-          ScrollTrigger.create({ trigger: it, start: 'top 62%', onEnter: function () { show(i); }, onEnterBack: function () { show(i); } });
-        });
-      }
+    /* Un seul comportement à toutes les largeurs : chaque configuration
+       s'active à son passage. Aucun pin — le défilement reste au visiteur. */
+    items.forEach(function (it, i) {
+      ScrollTrigger.create({
+        trigger: it, start: 'top 62%', end: 'bottom 38%',
+        onEnter: function () { show(i); },
+        onEnterBack: function () { show(i); }
+      });
     });
   })();
 
