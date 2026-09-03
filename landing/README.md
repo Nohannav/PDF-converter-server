@@ -31,6 +31,27 @@ les restrictions de chargement d'images de certains navigateurs.
 - **Étalonnage** — toutes les photos passent par un duoton encre/papier dosé,
   qui fait lire des sources disparates comme une même série.
 
+## Intro
+
+Au chargement, un plan d'encre couvre la page, **percé d'un trou en forme de
+sigle Volkswagen** : on regarde la photo du hero à travers le badge. La molette
+agrandit le trou jusqu'à ce qu'il avale l'écran — le logo ne s'efface pas, il
+devient la page.
+
+Le geste est piloté à la molette (900 px de course), pas par un `pin` ScrollTrigger :
+le trou laisse voir le hero réel, sans copie de la photo, donc aucune couture au
+raccord. La page est figée le temps du geste seulement. « Passer », `Échap`, `Entrée`
+ou `Espace` la libèrent immédiatement.
+
+Garde-fous : l'intro n'existe pas par défaut en CSS. Un script synchrone l'arme
+avant le premier rendu, et un filet de 4 s la retire si le moteur d'animation ne
+prend jamais la main. Sans JS, sans GSAP ou en `prefers-reduced-motion`, elle est
+purement absente — la page ne peut pas rester bloquée derrière un écran noir.
+
+> **Marque déposée.** Le sigle Volkswagen appartient à Volkswagen AG. Son emploi
+> ici relève de la maquette, pour un produit qui *est* un Volkswagen. Avant toute
+> mise en ligne, faites valider cet usage ou remplacez-le par une marque propre.
+
 ## Mouvement
 
 Défilement inertiel (Lenis), révélations au clip-path, parallaxe, une seule

@@ -76,6 +76,32 @@ button,input,select,textarea{font:inherit; color:inherit}
    Sans JS ou sans GSAP, tout reste lisible. */
 .mask{clip-path:inset(0 0 0 0)}
 
+/* ---------- intro ----------
+   Défaut : elle n'existe pas. Seul un JS actif l'arme, et un filet
+   la retire si le moteur d'animation ne prend jamais la main. */
+.intro{display:none}
+html.intro-armed .intro{display:block; position:fixed; inset:0; z-index:200}
+html.intro-armed,html.intro-armed body{overflow:hidden; height:100%}
+html.intro-armed .hd{opacity:0; pointer-events:none}
+html.intro-armed .hero{height:100svh}
+.intro__inner{position:absolute; inset:0; overflow:hidden}
+.intro__cut{position:absolute; inset:0; width:100%; height:100%; display:block}
+.intro__skip{
+  position:absolute; right:var(--gutter); top:1.15rem; z-index:4;
+  background:none; border:0; padding:.4rem 0; cursor:pointer; color:var(--paper);
+  font-size:.7rem; letter-spacing:.16em; text-transform:uppercase;
+  border-bottom:1px solid color-mix(in srgb,var(--paper) 45%,transparent);
+  transition:border-color .25s;
+}
+.intro__skip:hover{border-bottom-color:var(--paper)}
+.intro__hint{
+  position:absolute; left:50%; bottom:clamp(2rem,6vh,3.6rem); transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:.7rem;
+  color:var(--paper); z-index:3;
+}
+.intro__hint .label{color:inherit}
+.intro__hint svg{width:14px; height:30px; overflow:visible}
+
 /* ---------- en-tête ---------- */
 .hd{
   position:fixed; inset:0 0 auto 0; z-index:60;
@@ -333,6 +359,54 @@ button,input,select,textarea{font:inherit; color:inherit}
     <a href="#devis" class="hd__cta">Demander un devis</a>
   </nav>
 </header>
+
+
+  <!-- ============ INTRO : le sigle comme fenêtre ============
+       Le disque du sigle est un TROU dans un plan d'encre : on regarde
+       la photo du hero à travers le badge. Au scroll, le trou grandit
+       jusqu'à avaler l'écran — le logo ne s'efface pas, il devient la page. -->
+  <section class="intro" id="intro" aria-hidden="true">
+    <div class="intro__inner" id="introInner">
+      <svg class="intro__cut" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <mask id="vwCut" maskUnits="userSpaceOnUse" x="-3000" y="-3000" width="7000" height="7000">
+            <rect x="-3000" y="-3000" width="7000" height="7000" fill="#fff"/>
+            <g id="vwShape" transform="translate(500 500)">
+              <circle cx="0" cy="0" r="118" fill="#000"/>
+              <circle cx="0" cy="0" r="112" fill="none" stroke="#fff" stroke-width="11"/>
+              <g fill="none" stroke="#fff" stroke-width="16"
+                 stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="8">
+                <path d="M-38 -78 L0 -30 L38 -78"/>
+                <path d="M-60 -6 L-32 58 L0 -6 L32 58 L60 -6"/>
+              </g>
+            </g>
+          </mask>
+        </defs>
+        <rect id="introPlane" x="-3000" y="-3000" width="7000" height="7000" fill="#14120F" mask="url(#vwCut)"/>
+      </svg>
+      <button class="intro__skip" id="introSkip" type="button">Passer</button>
+      <div class="intro__hint" id="introHint">
+        <span class="label">Descendez pour entrer</span>
+        <svg viewBox="0 0 14 30" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+          <path d="M7 0 V26"/><path d="M2 21 L7 27 L12 21"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+  <script>
+  /* Armement synchrone, avant le premier rendu : sans JS, sans GSAP ou en
+     mouvement réduit, l'intro n'existe pas et la page s'ouvre normalement. */
+  (function () {
+    try {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var r = document.documentElement;
+      r.classList.add('intro-armed');
+      setTimeout(function () {
+        if (!r.classList.contains('intro-live')) r.classList.remove('intro-armed');
+      }, 4000);
+    } catch (e) {}
+  })();
+  </script>
 
 <main id="top">
 
@@ -600,15 +674,20 @@ button,input,select,textarea{font:inherit; color:inherit}
   var COARSE    = window.matchMedia('(hover: none)').matches;
 
   /* ---------- 1. séquence lente du hero (sans dépendance) ---------- */
-  (function heroSequence() {
+  var startHeroSequence = (function heroSequence() {
     var frames = document.querySelectorAll('#heroFrames .hero__frame');
-    if (frames.length < 2 || REDUCED) return;
-    var i = 0;
-    setInterval(function () {
-      frames[i].classList.remove('is-on');
-      i = (i + 1) % frames.length;
-      frames[i].classList.add('is-on');
-    }, 7000);
+    if (frames.length < 2 || REDUCED) return function () {};
+    var i = 0, started = false;
+    return function () {           /* démarré à la sortie de l'intro, pas avant :
+                                      la révélation doit tomber sur la 1re image */
+      if (started) return;
+      started = true;
+      setInterval(function () {
+        frames[i].classList.remove('is-on');
+        i = (i + 1) % frames.length;
+        frames[i].classList.add('is-on');
+      }, 7000);
+    };
   })();
 
   /* ---------- 2. formulaire : états réels ---------- */
@@ -634,7 +713,11 @@ button,input,select,textarea{font:inherit; color:inherit}
     });
   })();
 
-  if (!HAS_GSAP) return;   // la page reste entièrement lisible et utilisable
+  if (!HAS_GSAP) {                       // pas de moteur : on libère la page tout de suite
+    document.documentElement.classList.remove('intro-armed');
+    startHeroSequence();
+    return;
+  }
   gsap.registerPlugin(ScrollTrigger);
 
   /* ---------- 3. défilement fluide avec inertie ---------- */
@@ -659,18 +742,22 @@ button,input,select,textarea{font:inherit; color:inherit}
     });
   });
 
-  if (REDUCED) { ScrollTrigger.refresh(); return; }
+  if (REDUCED) {
+    document.documentElement.classList.remove('intro-armed');
+    startHeroSequence();
+    ScrollTrigger.refresh();
+    return;
+  }
 
   var EASE = 'expo.out';
 
   /* ---------- 4. hero : titre au masque, image en parallaxe ---------- */
-  gsap.from('.hero__title .ln > span', {
-    yPercent: 118, duration: 1.5, ease: EASE, stagger: 0.09, delay: 0.15
-  });
-  gsap.from('.hero__meta > *', {
-    opacity: 0, y: 14, duration: 0.9, ease: 'power2.out', stagger: 0.07, delay: 0.75
-  });
-  gsap.from('.hero__cue', { opacity: 0, duration: 1, delay: 1.2 });
+  /* ouverture du hero : jouée à l'arrivée, pas au chargement —
+     sinon elle se déroule derrière l'intro et le visiteur la rate. */
+  var heroIn = gsap.timeline({ paused: true })
+    .from('.hero__title .ln > span', { yPercent: 118, duration: 1.5, ease: EASE, stagger: 0.09 })
+    .from('.hero__meta > *', { opacity: 0, y: 14, duration: 0.9, ease: 'power2.out', stagger: 0.07 }, 0.5)
+    .from('.hero__cue', { opacity: 0, duration: 1 }, 0.9);
 
   gsap.to('#heroFrames', {
     yPercent: 16, scale: 1.08, ease: 'none',
@@ -697,6 +784,82 @@ button,input,select,textarea{font:inherit; color:inherit}
         }
       });
     });
+  })();
+
+  /* ---------- 4 bis. intro : le badge s'ouvre sur la page ----------
+     Piloté à la molette plutôt qu'au scroll épinglé : le trou laisse voir
+     le hero réel, sans copie de la photo — donc aucune couture au raccord.
+     La page est figée le temps du geste, jamais plus, et « Passer »,
+     une touche ou un clic la libèrent immédiatement. */
+  (function introSequence() {
+    var root = document.documentElement;
+    var sec = document.getElementById('intro');
+    if (!sec || !root.classList.contains('intro-armed')) { heroIn.play(); startHeroSequence(); return; }
+    root.classList.add('intro-live');       /* GSAP a la main : le filet se désarme */
+    if (lenis) lenis.stop();
+
+    var shape = document.getElementById('vwShape');
+    var plane = document.getElementById('introPlane');
+    gsap.set(shape, { svgOrigin: '500 500' });   /* repère SVG, pas boîte englobante */
+
+    var COURSE = 900;          /* distance de molette pour ouvrir entièrement */
+    var raw = 0, shown = 0, done = false, raf = 0;
+
+    function render() {
+      shown += (raw - shown) * 0.12;
+      var p = shown / COURSE;
+      gsap.set(shape, { scale: 1 + 8 * Math.pow(p, 3) });
+      gsap.set(plane, { opacity: p > 0.88 ? Math.max(0, 1 - (p - 0.88) / 0.12) : 1 });
+      gsap.set('#introHint', { opacity: Math.max(0, 1 - p * 5) });
+      if (raw >= COURSE && shown > COURSE * 0.985) { finish(); return; }
+      raf = requestAnimationFrame(render);
+    }
+
+    function push(d) {
+      if (done) return;
+      raw = Math.max(0, Math.min(COURSE, raw + d));
+      if (!raf) raf = requestAnimationFrame(render);
+    }
+
+    function finish() {
+      if (done) return;
+      done = true;
+      cancelAnimationFrame(raf);
+      window.removeEventListener('wheel', onWheel);
+      window.removeEventListener('touchmove', onTouch);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('keydown', onKey);
+      root.classList.remove('intro-armed');   /* rend le défilement à la page */
+      sec.style.display = 'none';
+      if (lenis) { lenis.start(); lenis.scrollTo(0, { immediate: true }); }
+      else window.scrollTo(0, 0);
+      gsap.set('#hd', { opacity: 1, pointerEvents: 'auto' });
+      ScrollTrigger.refresh();
+      heroIn.play();
+      startHeroSequence();
+    }
+
+    function onWheel(e) { e.preventDefault(); push(e.deltaY); }
+    var lastY = 0;
+    function onTouchStart(e) { lastY = e.touches[0].clientY; }
+    function onTouch(e) {
+      e.preventDefault();
+      var y = e.touches[0].clientY;
+      push((lastY - y) * 2.2);
+      lastY = y;
+    }
+    function onKey(e) {
+      if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') { e.preventDefault(); finish(); }
+      else if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); push(220); }
+    }
+
+    window.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouch, { passive: false });
+    window.addEventListener('keydown', onKey);
+    document.getElementById('introSkip').addEventListener('click', finish);
+
+    render();
   })();
 
   /* ---------- 5. montées génériques ---------- */
