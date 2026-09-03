@@ -1,0 +1,8 @@
+node_modules/
+shots/
+src-photos/
+dist/
+__pycache__/
+_test.html
+_artifact_test.html
+_*.jpg
