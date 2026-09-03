@@ -1,0 +1,3 @@
+# caches Python — generes par les scripts des skills et du pipeline photo
+__pycache__/
+*.py[cod]
