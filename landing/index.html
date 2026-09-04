@@ -3,381 +3,274 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Le Combi — bar mobile et réception en Volkswagen T1</title>
-<meta name="description" content="Location d'un Volkswagen T1 de 1962 aménagé en bar, ou nu pour votre propre scénographie. Mariages, réceptions, lancements.">
+<title>Le Combi - bar mobile en Volkswagen T1</title>
+<meta name="description" content="Un Volkswagen T1 de 1962 aménagé en bar, avec ou sans équipe derrière le comptoir. Mariages, réceptions, lancements en Île-de-France.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   LE COMBI — système de design
-   Palette : encre chaude / papier os / terre cuite / sauge
-   Type    : Instrument Serif (voix) + Archivo (texte)
+   LE COMBI
+   Thème verrouillé : sombre sur toute la page.
+   La chaleur vient des photographies, jamais de la palette :
+   le beige-laiton est le réflexe par défaut, on l'évite.
+   Accent pétrole relevé sur la carrosserie du T1.
    ============================================================ */
 :root{
-  --ink:#14120F;          /* noir chaud, jamais #000 */
-  --ink-2:#2A251E;
-  --paper:#EAE7DF;        /* os, refroidi : le crème chaud est un tic */
-  --paper-2:#DCD8CD;
-  --accent:#2C5C6E;       /* bleu pétrole relevé sur la carrosserie — 6.2:1 */
-  --accent-soft:#4A879C;
-  --sage:#7C8A70;         /* vert d'eau du second combi */
-  --muted:#6B6155;        /* teinté depuis l'encre, jamais gris neutre */
-  --muted-on-ink:#A79C8C;
+  --ink:#0C0D0F;          /* noir neutre profond, jamais #000 */
+  --ink-2:#141619;        /* surface élevée */
+  --ink-3:#1E2126;        /* surface la plus haute */
+  --cream:#ECEAE6;
+  --cream-2:#B9B8B5;      /* texte secondaire, teinté depuis l'encre */
+  --muted:#83858A;
+  --accent:#58A6BC;       /* pétrole, 6.9:1 sur l'encre */
+  --accent-2:#7FC3D6;
+  --line:color-mix(in srgb,var(--cream) 14%,transparent);
+  --line-strong:color-mix(in srgb,var(--cream) 26%,transparent);
 
-  --step--1:clamp(.78rem,.74rem + .2vw,.86rem);
-  --step-0:clamp(1rem,.96rem + .2vw,1.09rem);
-  --step-1:clamp(1.3rem,1.2rem + .5vw,1.6rem);
-  --step-2:clamp(1.9rem,1.6rem + 1.4vw,2.9rem);
-  --step-3:clamp(2.6rem,2rem + 3vw,4.6rem);
-  --step-4:clamp(2.6rem,1.2rem + 7.2vw,7.5rem);
+  --s--1:clamp(.76rem,.73rem + .14vw,.83rem);
+  --s-0:clamp(1rem,.97rem + .16vw,1.07rem);
+  --s-1:clamp(1.2rem,1.12rem + .38vw,1.42rem);
+  --s-2:clamp(1.7rem,1.45rem + 1.2vw,2.5rem);
+  --s-3:clamp(2.3rem,1.8rem + 2.5vw,3.9rem);
+  --s-4:clamp(2.7rem,1.5rem + 6.2vw,6.4rem);
 
   --gutter:clamp(1.25rem,5vw,5.5rem);
-  --rule:1px solid color-mix(in srgb,var(--ink) 16%,transparent);
-  --rule-ink:1px solid color-mix(in srgb,var(--paper) 20%,transparent);
   --ease:cubic-bezier(.16,1,.3,1);
+  --radius:0px;           /* un seul système de rayon : tout est vif */
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%; background:var(--ink)}
 body{
-  margin:0; background:var(--paper); color:var(--ink);
+  margin:0; background:var(--ink); color:var(--cream);
   font-family:Archivo,"Helvetica Neue",Arial,sans-serif;
-  font-size:var(--step-0); line-height:1.6; font-weight:300;
+  font-size:var(--s-0); line-height:1.62; font-weight:300;
   -webkit-font-smoothing:antialiased;
 }
-/* — surfaces du navigateur : elles font partie du design — */
-::selection{background:var(--accent); color:var(--paper)}
-body{caret-color:var(--accent); scrollbar-color:var(--muted) var(--paper-2); scrollbar-width:thin}
+/* surfaces du navigateur : elles font partie du design */
+::selection{background:var(--accent); color:var(--ink)}
+body{caret-color:var(--accent); scrollbar-color:var(--ink-3) var(--ink); scrollbar-width:thin}
 ::-webkit-scrollbar{width:10px}
-::-webkit-scrollbar-track{background:var(--paper-2)}
-::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--ink) 32%,transparent); border-radius:0}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:var(--ink-3)}
 ::-webkit-scrollbar-thumb:hover{background:var(--muted)}
 :focus-visible{outline:2px solid var(--accent); outline-offset:3px}
 a{color:inherit}
 
-h1,h2,h3,blockquote{
-  font-family:"Instrument Serif",Georgia,"Times New Roman",serif;
-  font-weight:400; letter-spacing:-.022em; line-height:1.02;
+h1,h2,h3{
+  font-family:"Bricolage Grotesque","Outfit",Archivo,system-ui,sans-serif;
+  font-weight:600; letter-spacing:-.028em; line-height:1.04;
   text-wrap:balance; margin:0;
 }
-p{margin:0; max-width:68ch}
+h1{font-weight:800}
+p{margin:0; max-width:62ch}
 img{display:block; max-width:100%}
 button,input,select,textarea{font:inherit; color:inherit}
 
-.wrap{padding-inline:var(--gutter)}
-.lede{font-size:var(--step-1); line-height:1.42; font-weight:300; color:var(--ink-2); max-width:34ch}
-.small{font-size:var(--step--1); line-height:1.5; color:var(--muted)}
-.label{
-  font-size:.7rem; letter-spacing:.16em; text-transform:uppercase;
-  font-weight:500; color:var(--muted);
-}
+.wrap{padding-inline:var(--gutter); max-width:1440px; margin-inline:auto}
+.lede{font-size:var(--s-1); line-height:1.45; color:var(--cream-2); max-width:34ch}
+.small{font-size:var(--s--1); color:var(--muted)}
+.eyebrow{font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; font-weight:500; color:var(--accent)}
 
-/* révélations : l'état final est le défaut CSS.
-   Sans JS ou sans GSAP, tout reste lisible. */
-.mask{clip-path:inset(0 0 0 0)}
-
-/* ---------- intro ----------
-   Défaut : elle n'existe pas. Seul un JS actif l'arme, et un filet
-   la retire si le moteur d'animation ne prend jamais la main. */
-.intro{display:none}
-html.intro-armed .intro{display:block; position:fixed; inset:0; z-index:200}
-html.intro-armed,html.intro-armed body{overflow:hidden; height:100%}
-html.intro-armed .hd{opacity:0; pointer-events:none}
-html.intro-armed .hero{height:100svh}
-.intro__inner{position:absolute; inset:0; overflow:hidden}
-.intro__cut{position:absolute; inset:0; width:100%; height:100%; display:block}
-.intro__skip{
-  position:absolute; right:var(--gutter); top:1.15rem; z-index:4;
-  background:none; border:0; padding:.4rem 0; cursor:pointer; color:var(--paper);
-  font-size:.7rem; letter-spacing:.16em; text-transform:uppercase;
-  border-bottom:1px solid color-mix(in srgb,var(--paper) 45%,transparent);
-  transition:border-color .25s;
+/* boutons : un seul système, contraste vérifié */
+.btn{
+  display:inline-flex; align-items:center; gap:.8rem; border:0; border-radius:var(--radius);
+  padding:1.05rem 1.9rem; cursor:pointer; text-decoration:none;
+  font-size:.78rem; letter-spacing:.13em; text-transform:uppercase; font-weight:600;
+  transition:background .3s var(--ease), color .3s var(--ease), gap .3s var(--ease), transform .12s;
 }
-.intro__skip:hover{border-bottom-color:var(--paper)}
-.intro__hint{
-  position:absolute; left:50%; bottom:clamp(2rem,6vh,3.6rem); transform:translateX(-50%);
-  display:flex; flex-direction:column; align-items:center; gap:.7rem;
-  color:var(--paper); z-index:3;
-}
-.intro__hint .label{color:inherit}
-.intro__hint svg{width:14px; height:30px; overflow:visible}
+.btn--primary{background:var(--accent); color:var(--ink)}
+.btn--primary:hover{background:var(--accent-2); gap:1.3rem}
+.btn--ghost{background:transparent; color:var(--cream); box-shadow:inset 0 0 0 1px var(--line-strong)}
+.btn--ghost:hover{background:color-mix(in srgb,var(--cream) 8%,transparent); gap:1.3rem}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.5; cursor:not-allowed}
+.btn svg{width:18px; height:8px; overflow:visible}
 
 /* ---------- en-tête ---------- */
 .hd{
-  position:fixed; inset:0 0 auto 0; z-index:60;
+  position:fixed; inset:0 0 auto 0; z-index:60; height:72px;
   display:flex; align-items:center; justify-content:space-between; gap:2rem;
-  padding:1.15rem var(--gutter);
-  color:var(--paper); isolation:isolate;
-  transition:color .45s var(--ease);
+  padding-inline:var(--gutter); color:var(--cream); isolation:isolate;
 }
 .hd::before{
-  content:""; position:absolute; inset:0 0 -52px 0; z-index:-1; pointer-events:none;
-  background:linear-gradient(to bottom,
-    color-mix(in srgb,var(--ink) 86%,transparent) 0%,
-    color-mix(in srgb,var(--ink) 62%,transparent) 46%,
-    transparent 100%);
-  transition:opacity .45s var(--ease);
+  content:""; position:absolute; inset:0 0 -46px 0; z-index:-1; pointer-events:none;
+  background:linear-gradient(to bottom,color-mix(in srgb,var(--ink) 92%,transparent) 0%,
+                                        color-mix(in srgb,var(--ink) 60%,transparent) 52%,transparent);
 }
-.hd.is-light{color:var(--ink)}
-.hd.is-light::before{background:linear-gradient(to bottom,
-    color-mix(in srgb,var(--paper) 96%,transparent) 0%,
-    color-mix(in srgb,var(--paper) 82%,transparent) 46%,
-    transparent 100%)}
-.hd__mark{font-family:"Instrument Serif",Georgia,serif; font-size:1.32rem; letter-spacing:.01em; text-decoration:none}
-.hd__mark em{font-style:italic}
-.hd__nav{display:flex; gap:1.9rem; align-items:center}
-.hd__nav a{
-  font-size:.76rem; letter-spacing:.13em; text-transform:uppercase; font-weight:400;
-  text-decoration:none; opacity:.82; transition:opacity .25s;
-}
-.hd__nav a:hover{opacity:1}
-@media(max-width:820px){ .hd__nav a:not(.hd__cta){display:none} }
-.hd__cta{border-bottom:1px solid currentColor; padding-bottom:2px}
+.hd__mark{font-family:"Bricolage Grotesque",Archivo,sans-serif; font-weight:800; font-size:1.16rem; letter-spacing:-.02em; text-decoration:none}
+.hd__nav{display:flex; gap:1.8rem; align-items:center}
+.hd__nav a{font-size:.74rem; letter-spacing:.12em; text-transform:uppercase; text-decoration:none; color:var(--cream-2); transition:color .25s}
+.hd__nav a:hover{color:var(--cream)}
+.hd__nav .btn{padding:.7rem 1.2rem}
+@media(max-width:900px){ .hd__nav a:not(.btn){display:none} }
 
 /* ---------- hero ---------- */
-.hero{position:relative; height:94svh; min-height:560px; overflow:hidden; background:var(--ink)}
+.hero{position:relative; min-height:100svh; display:flex; align-items:flex-end; overflow:hidden}
 .hero__frames{position:absolute; inset:0}
-.hero__frame{
-  position:absolute; inset:0; opacity:0;
-  transition:opacity 2.4s var(--ease);
-  will-change:opacity;
-}
-.hero__frame:first-child{opacity:1}
-.hero__frame.is-on{opacity:1}
-.hero__frame img{width:100%; height:100%; object-fit:cover; object-position:50% 58%}
+.hero__frame{position:absolute; inset:0; opacity:0; transition:opacity 2.2s var(--ease)}
+.hero__frame:first-child,.hero__frame.is-on{opacity:1}
+.hero__frame img{width:100%; height:100%; object-fit:cover; object-position:50% 52%}
 .hero__scrim{
   position:absolute; inset:0; pointer-events:none;
-  background:
-    linear-gradient(to top,color-mix(in srgb,var(--ink) 78%,transparent) 0%,transparent 46%),
-    linear-gradient(to bottom,color-mix(in srgb,var(--ink) 34%,transparent) 0%,transparent 26%);
+  background:linear-gradient(to top,var(--ink) 2%,color-mix(in srgb,var(--ink) 72%,transparent) 30%,transparent 66%),
+             linear-gradient(to right,color-mix(in srgb,var(--ink) 82%,transparent) 0%,color-mix(in srgb,var(--ink) 46%,transparent) 42%,transparent 74%);
 }
-/* flou progressif — empilement de couches, densité croissante */
-.pblur{position:absolute; inset:auto 0 0 0; height:34%; pointer-events:none; z-index:2}
-.pblur span{position:absolute; inset:0; -webkit-backdrop-filter:blur(var(--b)); backdrop-filter:blur(var(--b))}
-.pblur span:nth-child(1){--b:1px;  mask-image:linear-gradient(to top,#000 0%,#000 12%,transparent 32%)}
-.pblur span:nth-child(2){--b:3px;  mask-image:linear-gradient(to top,#000 0%,#000 6%,transparent 22%)}
-.pblur span:nth-child(3){--b:8px;  mask-image:linear-gradient(to top,#000 0%,#000 2%,transparent 13%)}
-.pblur span:nth-child(4){--b:18px; mask-image:linear-gradient(to top,#000 0%,transparent 7%)}
+.hero__in{position:relative; z-index:2; width:100%; padding-block:0 clamp(3rem,9vh,6rem)}
+.hero h1{font-size:var(--s-4); max-width:15ch}
+.hero h1 .ln{display:block; overflow:hidden; padding-bottom:.06em}
+.hero h1 .ln>span{display:block}
+.hero__sub{margin-top:clamp(1.1rem,2.4vh,1.7rem); font-size:var(--s-1); color:var(--cream-2); max-width:40ch}
+.hero__cta{display:flex; flex-wrap:wrap; gap:.9rem; margin-top:clamp(1.6rem,3.4vh,2.4rem)}
 
-.hero__copy{
-  position:absolute; z-index:3; left:var(--gutter); right:var(--gutter); bottom:clamp(2.2rem,7vh,5rem);
-  color:var(--paper);
-}
-.hero__title{font-size:var(--step-4); max-width:16ch; color:var(--paper)}
-.hero__title .ln{display:block; overflow:hidden}
-.hero__title .ln>span{display:block}
-.hero__title i{font-style:italic; color:var(--paper)}
-.hero__meta{
-  display:flex; flex-wrap:wrap; gap:.7rem 2.2rem; align-items:baseline;
-  margin-top:clamp(1.1rem,2.6vh,1.9rem); color:color-mix(in srgb,var(--paper) 84%,transparent);
-}
-.hero__meta .label{color:inherit}
-.hero__cue{
-  position:absolute; z-index:3; right:var(--gutter); bottom:clamp(2.2rem,7vh,5rem);
-  color:var(--paper); display:flex; align-items:center; gap:.7rem;
-}
-.hero__cue svg{width:14px; height:34px; overflow:visible}
-@media(max-width:700px){ .hero__cue{display:none} }
+/* ---------- bandeau de preuve ---------- */
+.proof{border-block:1px solid var(--line); background:var(--ink-2)}
+.proof__in{display:flex; flex-wrap:wrap; gap:1.4rem 3.5rem; align-items:baseline; padding-block:1.5rem}
+.proof__it{display:flex; align-items:baseline; gap:.7rem}
+.proof__n{font-family:"Bricolage Grotesque",Archivo,sans-serif; font-weight:600; font-size:1.5rem; color:var(--cream); font-variant-numeric:tabular-nums}
+.proof__l{font-size:var(--s--1); color:var(--muted)}
 
-/* ---------- manifeste ---------- */
-.manifest{padding-block:clamp(5rem,14vh,10rem) clamp(2.5rem,6vh,4rem)}
-.manifest__grid{display:grid; grid-template-columns:1fr; gap:clamp(1.6rem,4vw,4rem)}
-@media(min-width:900px){ .manifest__grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)} }
-.manifest h2{font-size:var(--step-2); max-width:14ch}
-.manifest p+p{margin-top:1.1rem}
+.sec{padding-block:clamp(5rem,13vh,9.5rem); position:relative}
+.sec__head h2{font-size:var(--s-3); max-width:15ch}
+.sec__head p{margin-top:1.1rem}
 
-/* bandeau défilant piloté par la vélocité du scroll */
-.band{
-  margin-top:clamp(3rem,8vh,6rem); border-block:var(--rule);
-  padding:.85rem 0; overflow:hidden; white-space:nowrap;
-}
-.band__row{display:inline-flex; gap:2.6rem; will-change:transform}
-.band__row span{
-  font-family:"Instrument Serif",Georgia,serif; font-size:clamp(1.4rem,3.4vw,2.5rem);
-  letter-spacing:-.01em; color:color-mix(in srgb,var(--ink) 72%,transparent);
-}
-.band__row span::after{content:"—"; margin-left:2.6rem; color:var(--accent)}
-
-/* ---------- section générique ---------- */
-.sec{padding-block:clamp(4.5rem,12vh,9rem); position:relative}
-.sec__head{display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; flex-wrap:wrap}
-.sec__head h2{font-size:var(--step-3); max-width:13ch}
-.sec__head p{max-width:36ch}
-
-/* ---------- véhicule (section épinglée) ---------- */
-.veh{background:var(--ink); color:var(--paper)}
-.veh h2,.veh h3{color:var(--paper)}
-.veh .label{color:var(--muted-on-ink)}
-.veh .sec__head p{color:color-mix(in srgb,var(--paper) 72%,transparent)}
-.veh__stage{
-  margin-top:clamp(2.5rem,7vh,5rem);
-  display:grid; grid-template-columns:1fr; gap:clamp(1.6rem,4vw,4rem); align-items:center;
-}
-@media(min-width:960px){
-  .veh__stage{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); align-items:start}
-}
+/* ---------- véhicule : image collante, aucun épinglage ---------- */
+.veh__stage{margin-top:clamp(2.5rem,7vh,4.5rem); display:grid; gap:clamp(1.6rem,4vw,4rem); align-items:start}
+@media(min-width:960px){ .veh__stage{grid-template-columns:minmax(0,1fr) minmax(0,1.02fr)} }
 .veh__media{position:relative; aspect-ratio:4/5; overflow:hidden; background:var(--ink-2)}
 .veh__media figure{position:absolute; inset:0; margin:0; clip-path:inset(0 0 100% 0)}
 .veh__media figure:first-child{clip-path:inset(0 0 0 0)}
-.veh__media img{width:100%; height:100%; object-fit:cover; transform:scale(1.06)}
-.veh__list{list-style:none; margin:0; padding:0; display:grid; gap:0}
-.veh__item{padding:clamp(1.3rem,3.2vh,2.1rem) 0; border-top:var(--rule-ink); position:relative;
-  opacity:.58; transition:opacity .55s var(--ease)}
+.veh__media img{width:100%; height:100%; object-fit:cover; transform:scale(1.05)}
+.veh__list{list-style:none; margin:0; padding:0}
+.veh__item{padding-block:clamp(1.4rem,3.4vh,2.2rem); border-top:1px solid var(--line); position:relative; opacity:.52; transition:opacity .55s var(--ease)}
+.veh__item:last-child{border-bottom:1px solid var(--line)}
 .veh__item.is-on{opacity:1}
-.veh__item:last-child{border-bottom:var(--rule-ink)}
-.veh__item h3{font-size:var(--step-2); display:flex; align-items:baseline; gap:1rem}
-.veh__item p{color:color-mix(in srgb,var(--paper) 68%,transparent); margin-top:.55rem; max-width:44ch}
-.veh__item .spec{
-  display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; margin-top:.9rem;
-  font-size:var(--step--1); color:var(--muted-on-ink);
-}
-
-.veh__item .bar{
-  position:absolute; left:0; top:-1px; height:2px; width:0; background:var(--accent-soft);
-}
+.veh__item h3{font-size:var(--s-2)}
+.veh__item p{color:var(--cream-2); margin-top:.6rem; max-width:44ch}
+.veh__spec{display:flex; flex-wrap:wrap; gap:.4rem 1.5rem; margin-top:1rem; font-size:var(--s--1); color:var(--muted); font-variant-numeric:tabular-nums}
+.veh__item .bar{position:absolute; left:0; top:-1px; height:2px; width:0; background:var(--accent)}
 @media(min-width:960px){
-  /* Collage CSS plutôt qu'un pin : l'image accompagne la lecture sans
-     jamais confisquer le défilement. Déclaré après .veh__media pour
-     l'emporter sur son position:relative. */
-  .veh__media{
-    position:sticky; top:clamp(4.5rem,12vh,7rem);
-    aspect-ratio:auto; height:min(62vh,620px);   /* plus courte = colle plus longtemps */
-  }
-  /* chaque configuration a besoin de sa propre course de lecture */
+  /* déclaré après .veh__media pour l'emporter sur son position:relative */
+  .veh__media{position:sticky; top:clamp(5.5rem,13vh,7.5rem); aspect-ratio:auto; height:min(62vh,620px)}
   .veh__item{min-height:50vh; display:flex; flex-direction:column; justify-content:center}
 }
 
-/* ---------- mobilier ---------- */
-.mob__grid{
-  margin-top:clamp(2.5rem,7vh,5rem); display:grid; gap:clamp(1.2rem,3vw,2.6rem);
-  grid-template-columns:repeat(12,1fr); align-items:end;
+/* ---------- le bar : trio asymétrique ---------- */
+.bar__grid{margin-top:clamp(2.5rem,7vh,4.5rem); display:grid; gap:clamp(1rem,2.4vw,2rem); grid-template-columns:repeat(12,1fr)}
+.bar__a,.bar__b,.bar__c{grid-column:1/span 12}
+@media(min-width:820px){
+  .bar__a{grid-column:1/span 5}
+  .bar__b{grid-column:6/span 7; align-self:end}
+  .bar__c{grid-column:3/span 8; margin-top:clamp(1rem,3vw,2.5rem)}
 }
-.mob__a{grid-column:1/span 12}
-.mob__b{grid-column:1/span 12}
-.mob__list{grid-column:1/span 12}
-@media(min-width:900px){
-  .mob__a{grid-column:1/span 7}
-  .mob__b{grid-column:9/span 4; margin-bottom:clamp(2rem,8vh,6rem)}
-  .mob__list{grid-column:1/span 12; margin-top:clamp(1.5rem,5vh,3.5rem)}
-}
-.frame{overflow:hidden; position:relative; clip-path:inset(0 0 0 0)}
+.frame{position:relative; overflow:hidden; clip-path:inset(0 0 0 0); background:var(--ink-2)}
 .frame img{width:100%; height:auto; will-change:transform}
-.frame figcaption{margin-top:.7rem; font-size:var(--step--1); color:var(--muted)}
-.inv{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(248px,1fr)); gap:0 clamp(1.5rem,4vw,3.5rem)}
-.inv li{display:flex; justify-content:space-between; align-items:baseline; gap:1.2rem; padding:.85rem 0; border-top:var(--rule)}
-.inv li span:last-child{color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap}
+.cap{margin-top:.75rem; font-size:var(--s--1); color:var(--muted)}
+
+/* ---------- mobilier : trois groupes, pas un tableau à filets ---------- */
+.kit{margin-top:clamp(2.5rem,7vh,4.5rem); display:grid; gap:clamp(1.6rem,3vw,2.6rem); grid-template-columns:1fr}
+@media(min-width:760px){ .kit{grid-template-columns:repeat(3,1fr)} }
+.kit__g{background:var(--ink-2); padding:clamp(1.4rem,2.6vw,2rem); border-top:2px solid var(--accent)}
+.kit__g h3{font-size:var(--s-1); font-weight:600}
+.kit__g ul{list-style:none; margin:1rem 0 0; padding:0; display:grid; gap:.55rem}
+.kit__g li{display:flex; justify-content:space-between; gap:1rem; align-items:baseline; color:var(--cream-2); font-size:var(--s--1)}
+.kit__g li b{font-weight:500; color:var(--cream); font-variant-numeric:tabular-nums; white-space:nowrap}
 
 /* ---------- animation ---------- */
-.anim{position:relative; background:var(--ink); color:var(--paper); overflow:hidden}
-.anim__bg{position:absolute; inset:-26% 0; opacity:.46}
-.anim::after{
-  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
-  background:linear-gradient(100deg,
-    color-mix(in srgb,var(--ink) 86%,transparent) 0%,
-    color-mix(in srgb,var(--ink) 52%,transparent) 52%,
-    transparent 100%);
+.anim{position:relative; overflow:hidden; background:var(--ink-2)}
+.anim__grid{display:grid; gap:clamp(1.6rem,4vw,4rem); align-items:center; grid-template-columns:1fr}
+@media(min-width:900px){ .anim__grid{grid-template-columns:minmax(0,.95fr) minmax(0,1fr)} }
+.anim h2{font-size:var(--s-3); max-width:13ch}
+.anim p{color:var(--cream-2); margin-top:1.2rem}
+
+/* ---------- bandeau cinétique (un seul sur la page) ---------- */
+.band{border-block:1px solid var(--line); padding-block:.9rem; overflow:hidden; white-space:nowrap; background:var(--ink)}
+.band__row{display:inline-flex; gap:2.8rem; will-change:transform}
+.band__row span{
+  font-family:"Bricolage Grotesque",Archivo,sans-serif; font-weight:600;
+  font-size:clamp(1.3rem,3.2vw,2.3rem); letter-spacing:-.02em; color:var(--cream-2);
 }
-.anim__bg img{width:100%; height:100%; object-fit:cover; will-change:transform}
-.anim__in{position:relative; z-index:2; padding-block:clamp(6rem,20vh,13rem)}
-.anim h2{color:var(--paper); font-size:var(--step-3); max-width:15ch}
-.anim p{color:color-mix(in srgb,var(--paper) 80%,transparent); margin-top:1.3rem}
+.band__row span::after{content:"/"; margin-left:2.8rem; color:var(--accent)}
 
 /* ---------- galerie WebGL ---------- */
-.gal{position:relative}
-.gal__grid{
-  margin-top:clamp(2.2rem,6vh,4rem); display:grid; gap:clamp(.7rem,1.6vw,1.4rem);
-  grid-template-columns:repeat(2,1fr);
-}
+.gal__grid{margin-top:clamp(2.2rem,6vh,3.5rem); display:grid; gap:clamp(.7rem,1.6vw,1.2rem); grid-template-columns:repeat(2,1fr)}
 @media(min-width:820px){ .gal__grid{grid-template-columns:repeat(4,1fr)} }
-.gal__cell{position:relative; aspect-ratio:1; overflow:hidden; background:var(--paper-2)}
+.gal__cell{position:relative; aspect-ratio:1; overflow:hidden; background:var(--ink-2)}
 .gal__cell img{width:100%; height:100%; object-fit:cover}
 .gal__cell.has-gl img{opacity:0}
 #gl{position:fixed; inset:0; pointer-events:none; z-index:5; opacity:0; transition:opacity .5s}
 #gl.is-live{opacity:1}
 
 /* ---------- témoignages ---------- */
-.temo__grid{margin-top:clamp(2.5rem,7vh,5rem); display:grid; gap:clamp(2rem,5vw,4rem); grid-template-columns:1fr}
+.temo__grid{margin-top:clamp(2.5rem,7vh,4.5rem); display:grid; gap:clamp(1.6rem,3vw,2.6rem); grid-template-columns:1fr}
 @media(min-width:900px){ .temo__grid{grid-template-columns:repeat(3,1fr)} }
-.temo blockquote{font-size:var(--step-1); line-height:1.3; font-style:italic}
-.temo figcaption{margin-top:1.1rem; padding-top:1.1rem; border-top:var(--rule); font-size:var(--step--1); color:var(--muted)}
-.temo figure{margin:0; display:flex; flex-direction:column; height:100%}
-.temo blockquote{flex:1 0 auto}
+.temo figure{margin:0; display:flex; flex-direction:column; height:100%; background:var(--ink-2); padding:clamp(1.5rem,2.8vw,2.2rem)}
+.temo blockquote{flex:1 0 auto; margin:0; font-family:"Bricolage Grotesque",Archivo,sans-serif; font-size:var(--s-1); line-height:1.36; font-weight:400}
+.temo figcaption{margin-top:1.4rem; padding-top:1.1rem; border-top:1px solid var(--line); font-size:var(--s--1); color:var(--muted)}
+.temo figcaption b{display:block; color:var(--cream-2); font-weight:500}
 
 /* ---------- devis ---------- */
-.cta{position:relative; background:var(--ink); color:var(--paper); overflow:hidden}
-.cta__bg{position:absolute; inset:-10% 0; opacity:.24}
-.cta::after{
-  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
-  background:linear-gradient(100deg,
-    color-mix(in srgb,var(--ink) 88%,transparent) 0%,
-    color-mix(in srgb,var(--ink) 62%,transparent) 46%,
-    color-mix(in srgb,var(--ink) 24%,transparent) 100%);
-}
+.cta{position:relative; overflow:hidden}
+.cta__bg{position:absolute; inset:0; opacity:.3}
 .cta__bg img{width:100%; height:100%; object-fit:cover}
-.cta__in{position:relative; z-index:2; padding-block:clamp(5rem,15vh,10rem)}
-.cta h2{color:var(--paper); font-size:var(--step-3); max-width:12ch}
-.cta__form{margin-top:clamp(2.2rem,6vh,4rem); display:grid; gap:1.4rem 2.2rem; grid-template-columns:1fr; max-width:760px}
+.cta::after{content:""; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(100deg,var(--ink) 6%,color-mix(in srgb,var(--ink) 74%,transparent) 52%,color-mix(in srgb,var(--ink) 30%,transparent))}
+.cta__in{position:relative; z-index:2}
+.cta h2{font-size:var(--s-3); max-width:12ch}
+.cta__form{margin-top:clamp(2.2rem,6vh,3.4rem); display:grid; gap:1.5rem 2.2rem; grid-template-columns:1fr; max-width:740px}
 @media(min-width:720px){ .cta__form{grid-template-columns:1fr 1fr} }
 .field{display:flex; flex-direction:column; gap:.5rem}
 .field--wide{grid-column:1/-1}
-.field label{font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted-on-ink)}
+.field label{font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--cream-2)}
 .field input,.field select,.field textarea{
-  background:transparent; border:0; border-bottom:1px solid color-mix(in srgb,var(--paper) 26%,transparent);
-  padding:.6rem 0; color:var(--paper); border-radius:0;
-  transition:border-color .3s var(--ease);
+  background:var(--ink-2); border:1px solid var(--line); border-radius:var(--radius);
+  padding:.85rem 1rem; color:var(--cream); transition:border-color .3s var(--ease);
 }
-.field input::placeholder,.field textarea::placeholder{color:color-mix(in srgb,var(--paper) 34%,transparent)}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none; border-bottom-color:var(--accent-soft)}
-.field select option{background:var(--ink); color:var(--paper)}
-.btn{
-  grid-column:1/-1; justify-self:start; margin-top:.8rem;
-  display:inline-flex; align-items:center; gap:.9rem;
-  background:var(--paper); color:var(--ink); border:0; border-radius:0;
-  padding:1rem 1.9rem; cursor:pointer;
-  font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; font-weight:500;
-  transition:background .3s var(--ease), color .3s var(--ease), gap .3s var(--ease);
-}
-.btn:hover:not(:disabled){background:var(--accent); color:var(--paper); gap:1.4rem}
-.btn:disabled{opacity:.55; cursor:not-allowed}
-.btn svg{width:18px; height:8px; overflow:visible}
-.formnote{grid-column:1/-1; font-size:var(--step--1); color:var(--muted-on-ink); margin:0}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none; border-color:var(--accent)}
+.field select option{background:var(--ink-2)}
+.field .hint{font-size:var(--s--1); color:var(--muted)}
+.formnote{grid-column:1/-1; margin:0; font-size:var(--s--1); color:var(--cream-2)}
 
 /* ---------- pied ---------- */
-.ft{padding-block:clamp(3rem,8vh,5rem) 2.2rem; border-top:var(--rule)}
-.ft__top{display:flex; flex-wrap:wrap; gap:2rem 3rem; justify-content:space-between; align-items:flex-start}
-.ft__mark{font-family:"Instrument Serif",Georgia,serif; font-size:2rem}
-.ft__cols{display:flex; flex-wrap:wrap; gap:2.5rem 4rem}
-.ft__col{display:grid; gap:.45rem; font-size:var(--step--1)}
-.ft__col a{text-decoration:none; color:var(--muted); transition:color .25s}
+.ft{border-top:1px solid var(--line); padding-block:clamp(3rem,8vh,4.5rem) 2rem}
+.ft__top{display:flex; flex-wrap:wrap; gap:2rem 3.5rem; justify-content:space-between}
+.ft__cols{display:flex; flex-wrap:wrap; gap:2.2rem 4rem}
+.ft__col{display:grid; gap:.45rem; font-size:var(--s--1)}
+.ft__col a{color:var(--cream-2); text-decoration:none; transition:color .25s}
 .ft__col a:hover{color:var(--accent)}
-.ft__bottom{margin-top:clamp(2.5rem,7vh,4rem); padding-top:1.3rem; border-top:var(--rule); display:flex; flex-wrap:wrap; gap:.6rem 2rem; justify-content:space-between}
+.ft__bottom{margin-top:clamp(2.4rem,6vh,3.5rem); padding-top:1.3rem; border-top:1px solid var(--line);
+  display:flex; flex-wrap:wrap; gap:.6rem 2rem; justify-content:space-between}
 .ft__bottom p{font-size:.72rem; color:var(--muted); max-width:none}
+
+/* ---------- intro ---------- */
+.intro{display:none}
+html.intro-armed .intro{display:block; position:fixed; inset:0; z-index:200}
+html.intro-armed,html.intro-armed body{overflow:hidden; height:100%}
+html.intro-armed .hd{opacity:0; pointer-events:none}
+.intro__inner{position:absolute; inset:0; overflow:hidden}
+.intro__cut{position:absolute; inset:0; width:100%; height:100%; display:block}
+.intro__skip{
+  position:absolute; right:var(--gutter); top:1.4rem; z-index:4;
+  background:none; border:0; padding:.4rem 0; cursor:pointer; color:var(--cream);
+  font-size:.7rem; letter-spacing:.16em; text-transform:uppercase;
+  border-bottom:1px solid var(--line-strong); transition:border-color .25s;
+}
+.intro__skip:hover{border-bottom-color:var(--cream)}
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms !important; transition-duration:.001ms !important}
-  .hero__frame{opacity:1}
   .hero__frame:not(:first-child){opacity:0}
 }
 </style>
 </head>
 <body>
 
-<header class="hd" id="hd">
-  <a class="hd__mark" href="#top">Le <em>Combi</em></a>
-  <nav class="hd__nav" aria-label="Principale">
-    <a href="#vehicule">Véhicule</a>
-    <a href="#mobilier">Mobilier</a>
-    <a href="#animation">Animation</a>
-    <a href="#temoignages">Ils l'ont fait</a>
-    <a href="#devis" class="hd__cta">Demander un devis</a>
-  </nav>
-</header>
-
-
-  <!-- ============ INTRO : le sigle comme fenêtre ============
-       Le disque du sigle est un TROU dans un plan d'encre : on regarde
-       la photo du hero à travers le badge. Au scroll, le trou grandit
-       jusqu'à avaler l'écran — le logo ne s'efface pas, il devient la page. -->
+  <!-- ============ INTRO ============
+       Le disque du sigle est un trou dans un plan d'encre : on regarde
+       le comptoir allumé à travers le badge. Le logo ne s'efface pas,
+       il devient la page. -->
   <section class="intro" id="intro" aria-hidden="true">
     <div class="intro__inner" id="introInner">
       <svg class="intro__cut" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
@@ -387,28 +280,21 @@ html.intro-armed .hero{height:100svh}
             <g id="vwShape" transform="translate(500 500)">
               <circle cx="0" cy="0" r="118" fill="#000"/>
               <circle cx="0" cy="0" r="112" fill="none" stroke="#fff" stroke-width="11"/>
-              <g fill="none" stroke="#fff" stroke-width="16"
-                 stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="8">
+              <g fill="none" stroke="#fff" stroke-width="16" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="8">
                 <path d="M-38 -78 L0 -30 L38 -78"/>
                 <path d="M-60 -6 L-32 58 L0 -6 L32 58 L60 -6"/>
               </g>
             </g>
           </mask>
         </defs>
-        <rect id="introPlane" x="-3000" y="-3000" width="7000" height="7000" fill="#14120F" mask="url(#vwCut)"/>
+        <rect id="introPlane" x="-3000" y="-3000" width="7000" height="7000" fill="#0C0D0F" mask="url(#vwCut)"/>
       </svg>
       <button class="intro__skip" id="introSkip" type="button">Passer</button>
-      <div class="intro__hint" id="introHint">
-        <span class="label">Descendez pour entrer</span>
-        <svg viewBox="0 0 14 30" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-          <path d="M7 0 V26"/><path d="M2 21 L7 27 L12 21"/>
-        </svg>
-      </div>
     </div>
   </section>
   <script>
-  /* Armement synchrone, avant le premier rendu : sans JS, sans GSAP ou en
-     mouvement réduit, l'intro n'existe pas et la page s'ouvre normalement. */
+  /* Armement synchrone avant le premier rendu. Sans JS, sans moteur
+     d'animation ou en mouvement réduit, l'intro n'existe pas. */
   (function () {
     try {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -421,192 +307,199 @@ html.intro-armed .hero{height:100svh}
   })();
   </script>
 
+<header class="hd" id="hd">
+  <a class="hd__mark" href="#top">Le Combi</a>
+  <nav class="hd__nav" aria-label="Principale">
+    <a href="#vehicule">Véhicule</a>
+    <a href="#bar">Le bar</a>
+    <a href="#mobilier">Mobilier</a>
+    <a href="#temoignages">Avis</a>
+    <a href="#devis" class="btn btn--primary">Demander un devis</a>
+  </nav>
+</header>
+
 <main id="top">
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="hero">
     <div class="hero__frames" id="heroFrames">
-      <div class="hero__frame is-on"><img src="photos/hero-combi.jpg" alt="Volkswagen T1 bleu et crème stationné dans un pré, portes fermées, en fin de journée" fetchpriority="high" width="1700" height="850"></div>
-      <div class="hero__frame"><img src="photos/hero-2.jpg" alt="Volkswagen T1 vert d'eau vu de trois quarts avant" loading="lazy" width="1700" height="850"></div>
-      <div class="hero__frame"><img src="photos/hero-3.jpg" alt="Volkswagen T1 crème installé sur une pelouse, auvent déployé" loading="lazy" width="1700" height="850"></div>
+      <div class="hero__frame is-on"><img src="photos/bar-counter.jpg" alt="Comptoir de bar éclairé par des ampoules chaudes, bouteilles alignées en arrière-plan" fetchpriority="high" width="1700" height="1133"></div>
+      <div class="hero__frame"><img src="photos/bar-room.jpg" alt="Salle de bar sous une nappe d'ampoules suspendues" loading="lazy" width="1700" height="1133"></div>
+      <div class="hero__frame"><img src="photos/hero-combi.jpg" alt="Volkswagen T1 bleu et crème stationné dans un pré" loading="lazy" width="1700" height="850"></div>
     </div>
     <div class="hero__scrim"></div>
-    <div class="pblur"><span></span><span></span><span></span><span></span></div>
 
-    <div class="hero__copy">
-      <h1 class="hero__title">
-        <span class="ln"><span>Nos véhicules</span></span>
-        <span class="ln"><span>évènementiels</span></span>
-        <span class="ln"><span><i>en location</i></span></span>
+    <div class="hero__in wrap">
+      <h1>
+        <span class="ln"><span>Un bar de 1962,</span></span>
+        <span class="ln"><span>garé chez vous.</span></span>
       </h1>
-      <div class="hero__meta">
-        <span class="label">Volkswagen T1 · 1962</span>
-        <span class="label">Bar équipé ou coquille nue</span>
-        <span class="label">Île-de-France &amp; alentours</span>
-      </div>
-    </div>
-
-    <div class="hero__cue" aria-hidden="true">
-      <span class="label">Faites défiler</span>
-      <svg viewBox="0 0 14 34" fill="none" stroke="currentColor" stroke-width="1">
-        <path d="M7 0 V30" /><path d="M2 25 L7 31 L12 25" />
-      </svg>
-    </div>
-  </section>
-
-  <!-- ============ MANIFESTE ============ -->
-  <section class="manifest wrap" data-nav="light">
-    <div class="manifest__grid">
-      <h2 data-rise>Un véhicule,<br>pas un décor.</h2>
-      <div>
-        <p data-rise>Le combi n'est pas posé là pour la photo. C'est un vrai comptoir : tireuse deux becs,
-          bac à glace, plan de travail réfrigéré, évier. Il sert, il débite, il tient une soirée entière
-          sans qu'on ait à penser à lui.</p>
-        <p data-rise>Et quand vous préférez l'imaginer autrement, on le vide. Il ne reste que le bois,
-          les vitres et une prise de courant. Ce que vous mettez dedans vous regarde&nbsp;: une platine,
-          un photographe, une boutique éphémère, trois cents fleurs.</p>
+      <p class="hero__sub">Volkswagen T1 aménagé en comptoir. Avec une équipe derrière, ou vide pour votre propre mise en scène.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#devis">
+          <span>Demander un devis</span>
+          <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 4h16"/><path d="M13 1l4 3-4 3"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="#vehicule"><span>Voir le véhicule</span></a>
       </div>
     </div>
   </section>
 
-  <div class="band wrap" aria-hidden="true">
+  <!-- ============ PREUVE (sous le hero, jamais dedans) ============ -->
+  <section class="proof">
+    <div class="proof__in wrap">
+      <div class="proof__it"><span class="proof__n">140</span><span class="proof__l">réceptions servies depuis 2019</span></div>
+      <div class="proof__it"><span class="proof__n">120</span><span class="proof__l">verres servis par heure, deux personnes au comptoir</span></div>
+      <div class="proof__it"><span class="proof__n">3 h</span><span class="proof__l">de montage, démontage le lendemain matin</span></div>
+    </div>
+  </section>
+
+  <!-- ============ VÉHICULE ============ -->
+  <section class="sec wrap" id="vehicule">
+    <div class="sec__head">
+      <h2 data-rise>Trois façons de l'utiliser.</h2>
+      <p data-rise class="lede">Le même châssis, trois aménagements. On monte la veille, on repart le lendemain.</p>
+    </div>
+
+    <div class="veh__stage" id="vehStage">
+      <div class="veh__media" id="vehMedia">
+        <figure data-veh="0"><img src="photos/veh-bar.jpg" alt="Le combi installé sur une pelouse, auvent déployé le long du flanc" loading="lazy" width="1150" height="1437"></figure>
+        <figure data-veh="1"><img src="photos/anim-prep.jpg" alt="Mains préparant des garnitures sur une planche, plan de travail éclairé" loading="lazy" width="1150" height="1437"></figure>
+        <figure data-veh="2"><img src="photos/veh-vide.jpg" alt="Le combi vu de l'arrière, hayon fermé, prêt à être aménagé" loading="lazy" width="1150" height="1437"></figure>
+      </div>
+
+      <ul class="veh__list" id="vehList">
+        <li class="veh__item is-on" data-veh="0"><i class="bar"></i>
+          <h3>Le bar</h3>
+          <p>Le flanc s'ouvre, le comptoir se déplie, deux personnes servent en même temps. C'est la configuration la plus demandée, et celle qui vide le plus vite une file d'attente.</p>
+          <div class="veh__spec"><span>Tireuse 2 becs</span><span>120 services / heure</span><span>Bac à glace 40 L</span><span>Évier et eau claire</span></div>
+        </li>
+        <li class="veh__item" data-veh="1"><i class="bar"></i>
+          <h3>Le traiteur</h3>
+          <p>Plan réfrigéré, passe ouvert vers l'extérieur, rangement bas. Votre traiteur travaille dedans sans courir jusqu'à une cuisine à quarante mètres.</p>
+          <div class="veh__spec"><span>Froid positif 90 L</span><span>Plan inox 1,4 m</span><span>Passe latéral</span><span>220 V / 16 A</span></div>
+        </li>
+        <li class="veh__item" data-veh="2"><i class="bar"></i>
+          <h3>La coquille nue</h3>
+          <p>Tout sort. Il reste le plancher bois, les vitres d'origine et une alimentation. C'est la version que prennent les scénographes, les DJ et les marques.</p>
+          <div class="veh__spec"><span>4,2 m²</span><span>Hauteur 1,45 m</span><span>Deux prises 220 V</span><span>Sans habillage</span></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="band" aria-hidden="true">
     <div class="band__row" id="band1">
-      <span>Bar mobile</span><span>Réception</span><span>Traiteur</span><span>Mariage</span>
-      <span>Lancement</span><span>Bar mobile</span><span>Réception</span><span>Traiteur</span>
-      <span>Mariage</span><span>Lancement</span>
+      <span>Bar mobile</span><span>Mariage</span><span>Réception</span><span>Lancement</span><span>Traiteur</span>
+      <span>Bar mobile</span><span>Mariage</span><span>Réception</span><span>Lancement</span><span>Traiteur</span>
     </div>
   </div>
 
-  <!-- ============ VÉHICULE (épinglée) ============ -->
-  <section class="sec veh" id="vehicule">
-    <div class="wrap">
-      <div class="sec__head">
-        <h2 data-rise>Trois façons<br>de l'utiliser.</h2>
-        <p data-rise class="lede">Le même châssis, trois aménagements. On monte la veille, on démonte le lendemain matin.</p>
-      </div>
-
-      <div class="veh__stage" id="vehStage">
-        <div class="veh__media" id="vehMedia">
-          <figure data-veh="0"><img src="photos/veh-bar.jpg" alt="Le combi ouvert en configuration bar, comptoir déployé sur le flanc" loading="lazy" width="1150" height="1437"></figure>
-          <figure data-veh="1"><img src="photos/mob-salle.jpg" alt="Comptoir de service et arrière-bar en bois, éclairage chaud" loading="lazy" width="1150" height="1437"></figure>
-          <figure data-veh="2"><img src="photos/veh-vide.jpg" alt="Le combi vu de l'arrière, hayon fermé, prêt à être aménagé" loading="lazy" width="1150" height="1437"></figure>
-        </div>
-
-        <ul class="veh__list" id="vehList">
-          <li class="veh__item is-on" data-veh="0"><i class="bar"></i>
-            <h3>Le bar</h3>
-            <p>Le flanc s'ouvre, le comptoir se déplie, deux personnes servent en même temps. C'est la
-              configuration la plus demandée, et celle qui vide le moins vite une file d'attente.</p>
-            <div class="spec"><span>Tireuse 2 becs</span><span>120 services/heure</span><span>Bac à glace 40 L</span><span>Évier &amp; eau claire</span></div>
-          </li>
-          <li class="veh__item" data-veh="1"><i class="bar"></i>
-            <h3>Le traiteur</h3>
-            <p>Plan réfrigéré, passe ouvert vers l'extérieur, rangement bas. Votre traiteur travaille
-              dedans sans avoir à courir jusqu'à une cuisine à quarante mètres.</p>
-            <div class="spec"><span>Froid positif 90 L</span><span>Plan inox 1,4 m</span><span>Passe latéral</span><span>220 V / 16 A</span></div>
-          </li>
-          <li class="veh__item" data-veh="2"><i class="bar"></i>
-            <h3>La coquille nue</h3>
-            <p>Tout sort. Il reste le plancher bois, les vitres d'origine et une alimentation.
-              C'est la version que prennent les scénographes, les DJ et les marques.</p>
-            <div class="spec"><span>4,2 m²</span><span>Hauteur 1,45 m</span><span>Deux prises 220 V</span><span>Sans habillage</span></div>
-          </li>
-        </ul>
-      </div>
+  <!-- ============ LE BAR ============ -->
+  <section class="sec wrap" id="bar">
+    <div class="sec__head">
+      <h2 data-rise>Ce qui sort du comptoir.</h2>
+      <p data-rise class="lede">Six cocktails à la carte, dont deux sans alcool qu'on n'a pas bâclés. Bière pression, vins de trois vignerons qu'on connaît.</p>
+    </div>
+    <div class="bar__grid">
+      <figure class="frame bar__a" data-reveal>
+        <img src="photos/bar-pour.jpg" alt="Cocktail versé à travers une passoire dans un verre à glaçon" loading="lazy" width="1150" height="1437" data-parallax="8">
+      </figure>
+      <figure class="frame bar__b" data-reveal>
+        <img src="photos/bar-room.jpg" alt="Salle de bar sous une nappe d'ampoules suspendues" loading="lazy" width="1700" height="1133" data-parallax="6">
+      </figure>
+      <figure class="frame bar__c" data-reveal>
+        <img src="photos/bar-glass.jpg" alt="Cocktail sombre garni de mûres et de rondelles de citron séché" loading="lazy" width="1150" height="1150" data-parallax="10">
+      </figure>
     </div>
   </section>
 
   <!-- ============ MOBILIER ============ -->
-  <section class="sec wrap" id="mobilier" data-nav="light">
+  <section class="sec wrap" id="mobilier">
     <div class="sec__head">
       <h2 data-rise>Ce qui va autour.</h2>
-      <p data-rise class="lede">Assez de mobilier pour asseoir soixante personnes, et pas un meuble
-        qui jure avec le combi. Livré, monté, repris.</p>
+      <p data-rise class="lede">De quoi asseoir soixante personnes sans qu'un seul meuble jure avec le combi. Livré, monté, repris.</p>
     </div>
-
-    <div class="mob__grid">
-      <figure class="frame mob__a" data-reveal>
-        <img src="photos/mob-table.jpg" alt="Table dressée en bois clair, verres et carafes, lumière naturelle" loading="lazy" width="1700" height="1133" data-parallax="8">
-        <figcaption>Tables de ferme, plateau chêne huilé — 8 disponibles</figcaption>
-      </figure>
-      <figure class="frame mob__b" data-reveal>
-        <img src="photos/anim-verres.jpg" alt="Trois cocktails alignés sur un comptoir en bois, contre-jour chaud" loading="lazy" width="1700" height="1133" data-parallax="14">
-        <figcaption>Verrerie fournie — 200 pièces</figcaption>
-      </figure>
-
-      <div class="mob__list">
-        <ul class="inv">
-          <li data-rise><span>Tables de ferme, chêne</span><span>8</span></li>
-          <li data-rise><span>Bancs bois brut, 2 m</span><span>16</span></li>
-          <li data-rise><span>Tabourets de bar, noyer</span><span>12</span></li>
-          <li data-rise><span>Mange-debout, tôle noire</span><span>10</span></li>
-          <li data-rise><span>Guirlandes guinguette</span><span>60 m</span></li>
-          <li data-rise><span>Parasols toile écrue</span><span>4</span></li>
-          <li data-rise><span>Comptoirs d'appoint</span><span>2</span></li>
-          <li data-rise><span>Verrerie, service complet</span><span>200</span></li>
+    <div class="kit">
+      <div class="kit__g" data-rise>
+        <h3>S'asseoir</h3>
+        <ul>
+          <li><span>Tables de ferme, chêne</span><b>8</b></li>
+          <li><span>Bancs bois brut, 2 m</span><b>16</b></li>
+          <li><span>Tabourets de bar, noyer</span><b>12</b></li>
+          <li><span>Mange-debout, tôle noire</span><b>10</b></li>
+        </ul>
+      </div>
+      <div class="kit__g" data-rise>
+        <h3>Éclairer</h3>
+        <ul>
+          <li><span>Guirlandes guinguette</span><b>60 m</b></li>
+          <li><span>Photophores verre fumé</span><b>40</b></li>
+          <li><span>Parasols toile écrue</span><b>4</b></li>
+          <li><span>Groupe électrogène silencieux</span><b>1</b></li>
+        </ul>
+      </div>
+      <div class="kit__g" data-rise>
+        <h3>Servir</h3>
+        <ul>
+          <li><span>Verrerie, service complet</span><b>200</b></li>
+          <li><span>Comptoirs d'appoint</span><b>2</b></li>
+          <li><span>Seaux à glace zinc</span><b>6</b></li>
+          <li><span>Vaisselle réutilisable</span><b>150</b></li>
         </ul>
       </div>
     </div>
   </section>
 
   <!-- ============ ANIMATION ============ -->
-  <section class="anim" id="animation">
-    <div class="anim__bg" aria-hidden="true">
-      <img src="photos/anim-barman.jpg" alt="" loading="lazy" data-parallax="12" width="1150" height="1437">
-    </div>
-    <div class="anim__in wrap">
-      <h2 data-rise>Et quelqu'un<br>derrière le comptoir.</h2>
-      <p data-rise class="lede">Un barman, deux si vous êtes plus de cent. Ils arrivent avec leur carte —
-        six cocktails, dont deux sans alcool qu'on n'a pas bâclés — ou travaillent la vôtre.
-        Pour la musique, on a deux DJ qu'on connaît bien et qu'on vous présente sans commission.</p>
+  <section class="sec anim" id="animation">
+    <div class="wrap anim__grid">
+      <div>
+        <h2 data-rise>Et quelqu'un derrière le comptoir.</h2>
+        <p data-rise class="lede">Un barman, deux au-delà de cent invités. Ils arrivent avec leur carte ou travaillent la vôtre. Pour la musique, deux DJ qu'on connaît bien et qu'on vous présente sans commission.</p>
+      </div>
+      <figure class="frame" data-reveal>
+        <img src="photos/bar-spritz.jpg" alt="Spritz servi dans un verre à pied, fumée légère en arrière-plan" loading="lazy" width="1150" height="1437" data-parallax="9">
+      </figure>
     </div>
   </section>
 
   <!-- ============ GALERIE ============ -->
-  <section class="sec gal wrap" id="galerie" data-nav="light">
-    <div class="sec__head">
-      <h2 data-rise>En service.</h2>
-      <p data-rise class="small">Survolez une image.</p>
-    </div>
+  <section class="sec wrap" id="galerie">
+    <div class="sec__head"><h2 data-rise>En service.</h2></div>
     <div class="gal__grid" id="galGrid">
-      <figure class="gal__cell"><img src="photos/temoin-trinq.jpg" alt="Invités trinquant, verres levés" loading="lazy"></figure>
-      <figure class="gal__cell"><img src="photos/gal-combi-t2.jpg" alt="Combi ouvert face à un plan d'eau" loading="lazy"></figure>
-      <figure class="gal__cell"><img src="photos/gal-confetti.jpg" alt="Confettis au-dessus d'une piste de danse" loading="lazy"></figure>
-      <figure class="gal__cell"><img src="photos/anim-foule.jpg" alt="Foule de dos face à une scène éclairée" loading="lazy"></figure>
+      <figure class="gal__cell"><img src="photos/bar-mojito.jpg" alt="Cocktail au citron vert devant une guirlande floue" loading="lazy"></figure>
+      <figure class="gal__cell"><img src="photos/temoin-table.jpg" alt="Convive attablée sous une lumière chaude" loading="lazy"></figure>
+      <figure class="gal__cell"><img src="photos/bar-glass.jpg" alt="Cocktail sombre garni de fruits séchés" loading="lazy"></figure>
+      <figure class="gal__cell"><img src="photos/hero-2.jpg" alt="Volkswagen T1 vert d'eau de trois quarts avant" loading="lazy"></figure>
     </div>
   </section>
 
   <!-- ============ TÉMOIGNAGES ============ -->
-  <section class="sec temo wrap" id="temoignages" data-nav="light">
-    <div class="sec__head">
-      <h2 data-rise>Ils l'ont fait<br>venir.</h2>
-    </div>
+  <section class="sec wrap temo" id="temoignages">
+    <div class="sec__head"><h2 data-rise>Ils l'ont fait venir.</h2></div>
     <div class="temo__grid">
       <figure data-rise>
-        <blockquote>« On avait peur que ça fasse gadget à côté de la robe. En fait c'est la seule chose
-          que tout le monde a photographiée. »</blockquote>
-        <figcaption>Camille &amp; Adrien — mariage, juin, Fontainebleau</figcaption>
+        <blockquote>« On craignait le gadget. C'est la seule chose que tout le monde a photographiée. »</blockquote>
+        <figcaption><b>Camille Roussel</b>Mariage de 90 invités, Fontainebleau</figcaption>
       </figure>
       <figure data-rise>
-        <blockquote>« Cent quarante personnes, deux heures de service, jamais plus de trois au comptoir.
-          Je ne sais pas comment ils font. »</blockquote>
-        <figcaption>Naïma — lancement de marque, Pantin</figcaption>
+        <blockquote>« Cent quarante personnes, deux heures de service, jamais plus de trois au comptoir. »</blockquote>
+        <figcaption><b>Naïma Belkacem</b>Directrice marque, lancement à Pantin</figcaption>
       </figure>
       <figure data-rise>
-        <blockquote>« On l'a pris vide. On a mis la platine dedans et ouvert les portes arrière.
-          Ça a fait la scène toute seule. »</blockquote>
-        <figcaption>Thomas — anniversaire, Vexin</figcaption>
+        <blockquote>« On l'a pris vide, platine dedans, portes arrière ouvertes. Ça a fait la scène tout seul. »</blockquote>
+        <figcaption><b>Thomas Ferrand</b>Anniversaire de 60 invités, Vexin</figcaption>
       </figure>
     </div>
   </section>
 
   <!-- ============ DEVIS ============ -->
-  <section class="cta" id="devis">
-    <div class="cta__bg" aria-hidden="true"><img src="photos/cta-couchant.jpg" alt="" loading="lazy" width="1700" height="956"></div>
+  <section class="sec cta" id="devis">
+    <div class="cta__bg" aria-hidden="true"><img src="photos/event-lights.jpg" alt="" loading="lazy" width="1700" height="956"></div>
     <div class="cta__in wrap">
-      <h2 data-rise>Dites-nous où,<br>et quand.</h2>
-      <p data-rise class="lede" style="color:color-mix(in srgb,var(--paper) 76%,transparent); margin-top:1.3rem">
-        Une réponse chiffrée sous 48 heures, ou un appel si c'est plus simple.</p>
+      <h2 data-rise>Dites-nous où, et quand.</h2>
+      <p data-rise class="lede" style="margin-top:1.2rem">Réponse chiffrée sous 48 heures, ou un appel si c'est plus simple.</p>
 
       <form class="cta__form" id="devisForm" novalidate>
         <div class="field"><label for="f-date">Date de l'événement</label>
@@ -616,17 +509,18 @@ html.intro-armed .hero{height:100svh}
         <div class="field"><label for="f-type">Type d'événement</label>
           <select id="f-type" name="type">
             <option>Mariage</option><option>Réception privée</option>
-            <option>Événement d'entreprise</option><option>Lancement / presse</option><option>Autre</option>
+            <option>Événement d'entreprise</option><option>Lancement</option><option>Autre</option>
           </select></div>
         <div class="field"><label for="f-inv">Nombre d'invités</label>
-          <input id="f-inv" name="invites" type="number" min="10" max="600" placeholder="80"></div>
+          <input id="f-inv" name="invites" type="number" min="10" max="600" placeholder="80">
+          <span class="hint">Approximatif suffit.</span></div>
         <div class="field field--wide"><label for="f-mail">Votre email</label>
           <input id="f-mail" name="email" type="email" placeholder="prenom@exemple.fr" required></div>
         <div class="field field--wide"><label for="f-msg">Ce que vous imaginez</label>
-          <textarea id="f-msg" name="message" rows="3" placeholder="Bar équipé, coquille nue, barman, mobilier…"></textarea></div>
-        <button class="btn" type="submit">
+          <textarea id="f-msg" name="message" rows="3" placeholder="Bar équipé, coquille nue, barman, mobilier"></textarea></div>
+        <button class="btn btn--primary" type="submit" id="devisBtn">
           <span>Envoyer la demande</span>
-          <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 4h16"/><path d="M13 1l4 3-4 3"/></svg>
+          <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 4h16"/><path d="M13 1l4 3-4 3"/></svg>
         </button>
         <p class="formnote" id="formNote" role="status"></p>
       </form>
@@ -634,33 +528,28 @@ html.intro-armed .hero{height:100svh}
   </section>
 </main>
 
-<footer class="ft wrap" data-nav="light">
+<footer class="ft wrap">
   <div class="ft__top">
     <div>
-      <div class="ft__mark">Le <em style="font-style:italic">Combi</em></div>
-      <p class="small" style="margin-top:.6rem; max-width:26ch">Bar mobile et réception<br>en Volkswagen T1 de 1962.</p>
+      <div class="hd__mark" style="font-size:1.8rem">Le Combi</div>
+      <p class="small" style="margin-top:.7rem; max-width:26ch">Bar mobile en Volkswagen T1 de 1962. Île-de-France et alentours.</p>
     </div>
     <div class="ft__cols">
       <div class="ft__col">
-        <span class="label">Contact</span>
+        <span class="eyebrow">Contact</span>
         <a href="mailto:bonjour@lecombi.fr">bonjour@lecombi.fr</a>
         <a href="tel:+33100000000">01 00 00 00 00</a>
       </div>
       <div class="ft__col">
-        <span class="label">Zone</span>
-        <span style="color:var(--muted)">Île-de-France</span>
-        <span style="color:var(--muted)">Déplacement sur devis</span>
-      </div>
-      <div class="ft__col">
-        <span class="label">Suivre</span>
+        <span class="eyebrow">Suivre</span>
         <a href="#">Instagram</a>
         <a href="#">Pinterest</a>
       </div>
     </div>
   </div>
   <div class="ft__bottom">
-    <p>Maquette de démonstration — marque fictive, textes et témoignages à remplacer.</p>
-    <p>Photographies T1 : Sicnag, sv1ambo, TuRbO_J (Wikimedia Commons, CC&nbsp;BY&nbsp;2.0), recadrées et étalonnées. Ambiances : Unsplash.</p>
+    <p>Maquette de démonstration. Marque fictive, textes et témoignages à remplacer.</p>
+    <p>Photographies T1 : Sicnag, sv1ambo, TuRbO_J (Wikimedia Commons, CC BY 2.0), recadrées et étalonnées. Ambiances : Unsplash.</p>
   </div>
 </footer>
 
@@ -672,10 +561,11 @@ html.intro-armed .hero{height:100svh}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 /* ============================================================
-   LE COMBI — système de mouvement
-   Principe : l'état final est le défaut CSS. GSAP anime DEPUIS
-   un état absent (gsap.from), jamais VERS l'état visible.
-   Si une bibliothèque ne charge pas, la page reste complète.
+   Système de mouvement.
+   Règle : l'état final est le défaut CSS. Les animations partent
+   d'un état absent (gsap.from) et n'y vont jamais. Sans moteur,
+   la page reste complète, lisible et utilisable.
+   Chaque animation a une raison : hiérarchie, récit ou retour.
    ============================================================ */
 (function () {
   'use strict';
@@ -686,13 +576,12 @@ html.intro-armed .hero{height:100svh}
   var REDUCED   = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var COARSE    = window.matchMedia('(hover: none)').matches;
 
-  /* ---------- 1. séquence lente du hero (sans dépendance) ---------- */
-  var startHeroSequence = (function heroSequence() {
+  /* diaporama du hero, démarré à la sortie de l'intro */
+  var startHeroSequence = (function () {
     var frames = document.querySelectorAll('#heroFrames .hero__frame');
     if (frames.length < 2 || REDUCED) return function () {};
     var i = 0, started = false;
-    return function () {           /* démarré à la sortie de l'intro, pas avant :
-                                      la révélation doit tomber sur la 1re image */
+    return function () {
       if (started) return;
       started = true;
       setInterval(function () {
@@ -703,44 +592,38 @@ html.intro-armed .hero{height:100svh}
     };
   })();
 
-  /* ---------- 2. formulaire : états réels ---------- */
+  /* formulaire : états réels, retour explicite */
   (function form() {
     var f = document.getElementById('devisForm');
     if (!f) return;
-    var note = document.getElementById('formNote');
-    var btn = f.querySelector('.btn');
+    var note = document.getElementById('formNote'), btn = document.getElementById('devisBtn');
     f.addEventListener('submit', function (e) {
       e.preventDefault();
-      var mail = f.querySelector('#f-mail');
       if (!f.checkValidity()) {
         note.textContent = 'Il manque la date, le lieu ou un email valide.';
-        (f.querySelector(':invalid') || mail).focus();
+        (f.querySelector(':invalid') || f).focus();
         return;
       }
       btn.disabled = true;
-      btn.querySelector('span').textContent = 'Envoi…';
+      btn.querySelector('span').textContent = 'Envoi en cours';
       setTimeout(function () {
         btn.querySelector('span').textContent = 'Demande envoyée';
-        note.textContent = 'Bien reçu. Réponse chiffrée sous 48 heures. (Maquette : rien n\'est transmis.)';
+        note.textContent = 'Bien reçu. Réponse chiffrée sous 48 heures. Maquette : rien n\'est transmis.';
       }, 700);
     });
   })();
 
-  if (!HAS_GSAP) {                       // pas de moteur : on libère la page tout de suite
+  if (!HAS_GSAP) {
     document.documentElement.classList.remove('intro-armed');
     startHeroSequence();
     return;
   }
   gsap.registerPlugin(ScrollTrigger);
 
-  /* ---------- 3. défilement fluide avec inertie ---------- */
+  /* défilement inertiel */
   var lenis = null;
   if (HAS_LENIS && !REDUCED) {
-    lenis = new Lenis({
-      duration: 1.15,
-      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-      smoothWheel: true, touchMultiplier: 1.6
-    });
+    lenis = new Lenis({ duration: 1.15, easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, smoothWheel: true, touchMultiplier: 1.6 });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
     gsap.ticker.lagSmoothing(0);
@@ -750,7 +633,7 @@ html.intro-armed .hero{height:100svh}
       var el = document.querySelector(a.getAttribute('href'));
       if (!el) return;
       e.preventDefault();
-      if (lenis) lenis.scrollTo(el, { offset: 0, duration: 1.3 });
+      if (lenis) lenis.scrollTo(el, { duration: 1.3 });
       else el.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth' });
     });
   });
@@ -764,76 +647,34 @@ html.intro-armed .hero{height:100svh}
 
   var EASE = 'expo.out';
 
-  /* ---------- 4. hero : titre au masque, image en parallaxe ---------- */
-  /* ouverture du hero : jouée à l'arrivée, pas au chargement —
-     sinon elle se déroule derrière l'intro et le visiteur la rate. */
+  /* ouverture du hero : hiérarchie, le titre arrive avant le reste */
   var heroIn = gsap.timeline({ paused: true })
-    .from('.hero__title .ln > span', { yPercent: 118, duration: 1.5, ease: EASE, stagger: 0.09 })
-    .from('.hero__meta > *', { opacity: 0, y: 14, duration: 0.9, ease: 'power2.out', stagger: 0.07 }, 0.5)
-    .from('.hero__cue', { opacity: 0, duration: 1 }, 0.9);
+    .from('.hero h1 .ln > span', { yPercent: 118, duration: 1.4, ease: EASE, stagger: 0.1 })
+    .from('.hero__sub', { opacity: 0, y: 16, duration: 0.9, ease: 'power2.out' }, 0.45)
+    .from('.hero__cta > *', { opacity: 0, y: 16, duration: 0.8, ease: 'power2.out', stagger: 0.08 }, 0.62);
 
-  gsap.to('#heroFrames', {
-    yPercent: 16, scale: 1.08, ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-  });
-  gsap.to('.hero__copy', {
-    yPercent: -38, opacity: 0.15, ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-  });
-
-  /* en-tête : suit le fond réellement présent sous elle.
-     Les sections sombres alternent avec les claires : un basculement
-     unique après le hero laissait la barre invisible sur fond noir. */
-  (function headerTheme() {
-    var hd = document.getElementById('hd');
-    var lights = gsap.utils.toArray('[data-nav="light"]');
-    var count = 0;
-    lights.forEach(function (sec) {
-      ScrollTrigger.create({
-        trigger: sec, start: 'top 34px', end: 'bottom 34px',
-        onToggle: function (self) {
-          count += self.isActive ? 1 : -1;
-          hd.classList.toggle('is-light', count > 0);
-        }
-      });
-    });
-  })();
-
-  /* ---------- 4 bis. intro : le badge s'ouvre sur la page ----------
-     Piloté à la molette plutôt qu'au scroll épinglé : le trou laisse voir
-     le hero réel, sans copie de la photo — donc aucune couture au raccord.
-     La page est figée le temps du geste, jamais plus, et « Passer »,
-     une touche ou un clic la libèrent immédiatement. */
+  /* intro : le badge s'ouvre sur le comptoir. Piloté à la molette,
+     le trou laisse voir le hero réel, sans copie de la photo. */
   (function introSequence() {
-    var root = document.documentElement;
-    var sec = document.getElementById('intro');
+    var root = document.documentElement, sec = document.getElementById('intro');
     if (!sec || !root.classList.contains('intro-armed')) { heroIn.play(); startHeroSequence(); return; }
-    root.classList.add('intro-live');       /* GSAP a la main : le filet se désarme */
+    root.classList.add('intro-live');
     if (lenis) lenis.stop();
 
-    var shape = document.getElementById('vwShape');
-    var plane = document.getElementById('introPlane');
+    var shape = document.getElementById('vwShape'), plane = document.getElementById('introPlane');
     gsap.set(shape, { svgOrigin: '500 500' });   /* repère SVG, pas boîte englobante */
 
-    var COURSE = 900;          /* distance de molette pour ouvrir entièrement */
-    var raw = 0, shown = 0, done = false, raf = 0;
+    var COURSE = 900, raw = 0, shown = 0, done = false, raf = 0;
 
     function render() {
       shown += (raw - shown) * 0.12;
       var p = shown / COURSE;
       gsap.set(shape, { scale: 1 + 8 * Math.pow(p, 3) });
       gsap.set(plane, { opacity: p > 0.88 ? Math.max(0, 1 - (p - 0.88) / 0.12) : 1 });
-      gsap.set('#introHint', { opacity: Math.max(0, 1 - p * 5) });
       if (raw >= COURSE && shown > COURSE * 0.985) { finish(); return; }
       raf = requestAnimationFrame(render);
     }
-
-    function push(d) {
-      if (done) return;
-      raw = Math.max(0, Math.min(COURSE, raw + d));
-      if (!raf) raf = requestAnimationFrame(render);
-    }
-
+    function push(d) { if (!done) { raw = Math.max(0, Math.min(COURSE, raw + d)); if (!raf) raf = requestAnimationFrame(render); } }
     function finish() {
       if (done) return;
       done = true;
@@ -842,72 +683,63 @@ html.intro-armed .hero{height:100svh}
       window.removeEventListener('touchmove', onTouch);
       window.removeEventListener('touchstart', onTouchStart);
       window.removeEventListener('keydown', onKey);
-      root.classList.remove('intro-armed');   /* rend le défilement à la page */
+      root.classList.remove('intro-armed');
       sec.style.display = 'none';
-      if (lenis) { lenis.start(); lenis.scrollTo(0, { immediate: true }); }
-      else window.scrollTo(0, 0);
+      if (lenis) { lenis.start(); lenis.scrollTo(0, { immediate: true }); } else window.scrollTo(0, 0);
       gsap.set('#hd', { opacity: 1, pointerEvents: 'auto' });
       ScrollTrigger.refresh();
       heroIn.play();
       startHeroSequence();
     }
-
     function onWheel(e) { e.preventDefault(); push(e.deltaY); }
     var lastY = 0;
     function onTouchStart(e) { lastY = e.touches[0].clientY; }
-    function onTouch(e) {
-      e.preventDefault();
-      var y = e.touches[0].clientY;
-      push((lastY - y) * 2.2);
-      lastY = y;
-    }
+    function onTouch(e) { e.preventDefault(); var y = e.touches[0].clientY; push((lastY - y) * 2.2); lastY = y; }
     function onKey(e) {
       if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') { e.preventDefault(); finish(); }
       else if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); push(220); }
     }
-
     window.addEventListener('wheel', onWheel, { passive: false });
     window.addEventListener('touchstart', onTouchStart, { passive: true });
     window.addEventListener('touchmove', onTouch, { passive: false });
     window.addEventListener('keydown', onKey);
     document.getElementById('introSkip').addEventListener('click', finish);
-
     render();
   })();
 
-  /* ---------- 5. montées génériques ---------- */
+  /* hero : parallaxe de profondeur */
+  gsap.to('#heroFrames', { yPercent: 14, scale: 1.07, ease: 'none',
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.hero__in', { yPercent: -32, opacity: 0.1, ease: 'none',
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+  /* montées : récit, le contenu arrive dans l'ordre de lecture */
   gsap.utils.toArray('[data-rise]').forEach(function (el) {
-    gsap.from(el, {
-      opacity: 0, y: 26, duration: 0.95, ease: EASE,
-      scrollTrigger: { trigger: el, start: 'top 88%' }
-    });
+    gsap.from(el, { opacity: 0, y: 24, duration: 0.9, ease: EASE,
+      scrollTrigger: { trigger: el, start: 'top 88%' } });
   });
 
-  /* ---------- 6. révélations par clip-path ---------- */
+  /* révélations par masque : l'image se découvre au lieu d'apparaître */
   gsap.utils.toArray('[data-reveal]').forEach(function (el) {
     var img = el.querySelector('img');
-    var tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 86%' } });
-    tl.from(el, { clipPath: 'inset(0 0 100% 0)', duration: 1.25, ease: EASE })
-      .from(img, { scale: 1.24, duration: 1.5, ease: EASE }, 0);
+    gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 86%' } })
+      .from(el, { clipPath: 'inset(0 0 100% 0)', duration: 1.2, ease: EASE })
+      .from(img, { scale: 1.22, duration: 1.45, ease: EASE }, 0);
   });
 
-  /* ---------- 7. parallaxe des couches d'image ---------- */
+  /* parallaxe des couches d'image */
   gsap.utils.toArray('[data-parallax]').forEach(function (img) {
     var amt = parseFloat(img.dataset.parallax) || 8;
-    gsap.fromTo(img, { yPercent: -amt }, {
-      yPercent: amt, ease: 'none',
-      scrollTrigger: { trigger: img.closest('figure, .anim, .cta') || img, start: 'top bottom', end: 'bottom top', scrub: true }
-    });
+    gsap.fromTo(img, { yPercent: -amt }, { yPercent: amt, ease: 'none',
+      scrollTrigger: { trigger: img.closest('figure, .cta') || img, start: 'top bottom', end: 'bottom top', scrub: true } });
   });
 
-  /* ---------- 8. bandeau piloté par la vélocité du scroll ---------- */
+  /* bandeau : sa vitesse suit celle du scroll, retour de geste */
   (function velocityBand() {
     var row = document.getElementById('band1');
     if (!row) return;
-    var x = 0, base = -0.55, extra = 0, w = row.scrollWidth / 2;
-    ScrollTrigger.create({
-      onUpdate: function (self) { extra = gsap.utils.clamp(-14, 14, self.getVelocity() / 190); }
-    });
+    var x = 0, base = -0.5, extra = 0, w = row.scrollWidth / 2;
+    ScrollTrigger.create({ onUpdate: function (self) { extra = gsap.utils.clamp(-14, 14, self.getVelocity() / 190); } });
     gsap.ticker.add(function () {
       extra = gsap.utils.interpolate(extra, 0, 0.06);
       x += base + extra;
@@ -918,59 +750,40 @@ html.intro-armed .hero{height:100svh}
     window.addEventListener('resize', function () { w = row.scrollWidth / 2; });
   })();
 
-  /* ---------- 9. véhicule : la seule section épinglée ---------- */
-  (function pinnedVehicle() {
-    var stage = document.getElementById('vehStage');
-    var items = gsap.utils.toArray('#vehList .veh__item');
-    var figs  = gsap.utils.toArray('#vehMedia figure');
-    if (!stage || items.length !== figs.length) return;
-
+  /* véhicule : image collante, aucun épinglage, le scroll reste au visiteur */
+  (function vehicle() {
+    var items = gsap.utils.toArray('#vehList .veh__item'), figs = gsap.utils.toArray('#vehMedia figure');
+    if (!items.length || items.length !== figs.length) return;
     function show(n) {
       items.forEach(function (it, i) { it.classList.toggle('is-on', i === n); });
       figs.forEach(function (f, i) {
-        gsap.to(f, {
-          clipPath: i <= n ? 'inset(0 0 0% 0)' : 'inset(0 0 100% 0)',
-          duration: 0.9, ease: EASE, overwrite: true
-        });
-        gsap.to(f.querySelector('img'), { scale: i === n ? 1 : 1.06, duration: 1.1, ease: EASE, overwrite: true });
+        gsap.to(f, { clipPath: i <= n ? 'inset(0 0 0% 0)' : 'inset(0 0 100% 0)', duration: 0.85, ease: EASE, overwrite: true });
+        gsap.to(f.querySelector('img'), { scale: i === n ? 1 : 1.05, duration: 1, ease: EASE, overwrite: true });
       });
       items.forEach(function (it, i) {
-        gsap.to(it.querySelector('.bar'), { width: i === n ? '100%' : '0%', duration: 0.7, ease: EASE, overwrite: true });
+        gsap.to(it.querySelector('.bar'), { width: i === n ? '100%' : '0%', duration: 0.65, ease: EASE, overwrite: true });
       });
     }
     show(0);
-
-    /* Un seul comportement à toutes les largeurs : chaque configuration
-       s'active à son passage. Aucun pin — le défilement reste au visiteur. */
     items.forEach(function (it, i) {
-      ScrollTrigger.create({
-        trigger: it, start: 'top 62%', end: 'bottom 38%',
-        onEnter: function () { show(i); },
-        onEnterBack: function () { show(i); }
-      });
+      ScrollTrigger.create({ trigger: it, start: 'top 62%', end: 'bottom 38%',
+        onEnter: function () { show(i); }, onEnterBack: function () { show(i); } });
     });
   })();
 
-  /* ---------- 10. galerie WebGL : distorsion légère au survol ---------- */
+  /* galerie : distorsion légère au survol, retour de pointage */
   (function gallery() {
     var canvas = document.getElementById('gl');
     var cells = Array.prototype.slice.call(document.querySelectorAll('#galGrid .gal__cell'));
     if (!HAS_THREE || !canvas || !cells.length || COARSE) return;
-
     var renderer;
-    try {
-      renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-    } catch (e) { return; }                       /* pas de WebGL : les <img> restent affichées */
+    try { renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true }); } catch (e) { return; }
     if (!renderer.getContext()) return;
-
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     var scene = new THREE.Scene();
-    var camera = new THREE.OrthographicCamera(
-      -window.innerWidth / 2, window.innerWidth / 2,
-      window.innerHeight / 2, -window.innerHeight / 2, -1000, 1000);
-
+    var camera = new THREE.OrthographicCamera(-innerWidth / 2, innerWidth / 2, innerHeight / 2, -innerHeight / 2, -1000, 1000);
     var VERT = 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }';
     var FRAG = [
       'uniform sampler2D uTex; uniform float uHover; uniform vec2 uMouse; uniform float uTime;',
@@ -978,35 +791,30 @@ html.intro-armed .hero{height:100svh}
       'void main(){',
       '  vec2 uv = vUv;',
       '  float d = distance(uv, uMouse);',
-      '  float pull = uHover * 0.055 * exp(-d * 3.4);',      /* creux local, jamais global */
+      '  float pull = uHover * 0.052 * exp(-d * 3.4);',
       '  vec2 dir = normalize(uv - uMouse + 1e-5);',
       '  uv -= dir * pull;',
-      '  uv.y += uHover * 0.006 * sin(uv.x * 9.0 + uTime * 0.9);',
-      '  float ab = uHover * 0.0035;',                        /* aberration très légère */
+      '  uv.y += uHover * 0.005 * sin(uv.x * 9.0 + uTime * 0.9);',
+      '  float ab = uHover * 0.0032;',
       '  float r = texture2D(uTex, uv + vec2(ab, 0.0)).r;',
       '  vec3 gb = texture2D(uTex, uv).rgb;',
       '  vec3 col = vec3(r, gb.g, texture2D(uTex, uv - vec2(ab, 0.0)).b);',
-      '  col = mix(col, col * 1.06, uHover);',
+      '  col = mix(col, col * 1.08, uHover);',
       '  gl_FragColor = vec4(col, 1.0);',
       '}'
     ].join('\n');
 
-    var loader = new THREE.TextureLoader();
-    var planes = [];
-
+    var loader = new THREE.TextureLoader(), planes = [];
     cells.forEach(function (cell) {
       var img = cell.querySelector('img');
       var tex = loader.load(img.currentSrc || img.src, function () { cell.classList.add('has-gl'); canvas.classList.add('is-live'); });
       tex.minFilter = THREE.LinearFilter;
-      var mat = new THREE.ShaderMaterial({
-        vertexShader: VERT, fragmentShader: FRAG,
-        uniforms: { uTex: { value: tex }, uHover: { value: 0 }, uMouse: { value: new THREE.Vector2(0.5, 0.5) }, uTime: { value: 0 } }
-      });
+      var mat = new THREE.ShaderMaterial({ vertexShader: VERT, fragmentShader: FRAG,
+        uniforms: { uTex: { value: tex }, uHover: { value: 0 }, uMouse: { value: new THREE.Vector2(0.5, 0.5) }, uTime: { value: 0 } } });
       var mesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 24, 24), mat);
       scene.add(mesh);
       var rec = { cell: cell, mesh: mesh, mat: mat, target: 0 };
       planes.push(rec);
-
       cell.addEventListener('pointerenter', function () { rec.target = 1; });
       cell.addEventListener('pointerleave', function () { rec.target = 0; });
       cell.addEventListener('pointermove', function (e) {
@@ -1015,35 +823,26 @@ html.intro-armed .hero{height:100svh}
       });
     });
 
-    function layout() {
+    var clock = new THREE.Clock();
+    gsap.ticker.add(function () {
       planes.forEach(function (p) {
         var b = p.cell.getBoundingClientRect();
         p.mesh.scale.set(b.width, b.height, 1);
-        p.mesh.position.set(b.left + b.width / 2 - window.innerWidth / 2, -b.top - b.height / 2 + window.innerHeight / 2, 0);
-        p.mesh.visible = b.bottom > -80 && b.top < window.innerHeight + 80;
-      });
-    }
-
-    var clock = new THREE.Clock();
-    gsap.ticker.add(function () {
-      layout();
-      var t = clock.getElapsedTime();
-      planes.forEach(function (p) {
-        p.mat.uniforms.uTime.value = t;
+        p.mesh.position.set(b.left + b.width / 2 - innerWidth / 2, -b.top - b.height / 2 + innerHeight / 2, 0);
+        p.mesh.visible = b.bottom > -80 && b.top < innerHeight + 80;
+        p.mat.uniforms.uTime.value = clock.getElapsedTime();
         p.mat.uniforms.uHover.value += (p.target - p.mat.uniforms.uHover.value) * 0.09;
       });
       renderer.render(scene, camera);
     });
-
     window.addEventListener('resize', function () {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      camera.left = -window.innerWidth / 2; camera.right = window.innerWidth / 2;
-      camera.top = window.innerHeight / 2; camera.bottom = -window.innerHeight / 2;
+      renderer.setSize(innerWidth, innerHeight);
+      camera.left = -innerWidth / 2; camera.right = innerWidth / 2;
+      camera.top = innerHeight / 2; camera.bottom = -innerHeight / 2;
       camera.updateProjectionMatrix();
     });
   })();
 
-  /* ---------- 11. recalage après chargement des images ---------- */
   window.addEventListener('load', function () { ScrollTrigger.refresh(); });
 })();
 </script>

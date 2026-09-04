@@ -25,11 +25,20 @@ les restrictions de chargement d'images de certains navigateurs.
 
 ## Direction artistique
 
-- **Palette** — encre `#14120F`, papier `#EAE7DF`, accent bleu pétrole `#2C5C6E`
-  relevé sur la carrosserie du T1, vert d'eau `#7C8A70` en secondaire.
-- **Typographie** — Instrument Serif (voix), Archivo (texte).
-- **Étalonnage** — toutes les photos passent par un duoton encre/papier dosé,
-  qui fait lire des sources disparates comme une même série.
+**Thème sombre verrouillé sur toute la page.** Aucune section ne repasse en clair :
+le visiteur ne doit pas croire qu'il a changé de site en cours de défilement.
+
+- **Palette** : encre `#0C0D0F` (noir neutre profond, jamais `#000`), crème `#ECEAE6`,
+  accent pétrole `#58A6BC` relevé sur la carrosserie du T1 (6,9:1 sur l'encre).
+- **La chaleur vient des photographies, jamais de la palette.** Le beige-laiton-espresso
+  est le réflexe par défaut des modèles sur les briefs haut de gamme ; on l'évite
+  délibérément. Le bar apporte l'ambre, la charte reste froide et disciplinée.
+- **Typographie** : Bricolage Grotesque (affichage), Archivo (texte). Aucune serif :
+  Instrument Serif et Fraunces sont des signatures d'IA identifiées.
+- **Un seul rayon d'angle** : zéro. **Un seul accent**, sur toute la page.
+- **Étalonnage** : duoton encre/crème dosé faible (0,14) pour laisser vivre les photos,
+  renforcé ponctuellement (0,30 à 0,34) sur les images à néons magenta, qui sortaient
+  de la charte.
 
 ## Intro
 
@@ -54,20 +63,19 @@ purement absente — la page ne peut pas rester bloquée derrière un écran noi
 
 ## Mouvement
 
-Défilement inertiel (Lenis), révélations au clip-path, parallaxe, bandeau piloté
-par la vélocité du scroll, flou progressif, et distorsion WebGL légère au survol
+Défilement inertiel (Lenis), révélations par masque au clip-path, parallaxe,
+bandeau dont la vitesse suit celle du scroll, et distorsion WebGL légère au survol
 des vignettes (Three.js).
 
 **Aucune section n'est épinglée.** La section « véhicule » utilise un collage CSS
-(`position:sticky`) : l'image accompagne la lecture des trois configurations sans
-jamais confisquer le défilement. Deux pièges à connaître si vous y touchez —
-`overflow-x:hidden` sur `body` neutralise `position:sticky`, et la règle sticky
-doit être déclarée *après* `.veh__media{position:relative}` pour l'emporter.
+(`position:sticky`). Deux pièges si vous y touchez : `overflow-x:hidden` sur `body`
+neutralise `position:sticky`, et la règle sticky doit être déclarée *après*
+`.veh__media{position:relative}` pour l'emporter dans la cascade.
 
-Principe de robustesse : **l'état final est le défaut CSS**. Les animations
-partent d'un état absent (`gsap.from`) et n'y vont jamais. Si GSAP, Lenis ou
-Three.js ne se chargent pas, la page reste complète, lisible et utilisable.
-`prefers-reduced-motion` coupe le mouvement.
+Chaque animation a une raison : hiérarchie, récit ou retour de geste. Principe de
+robustesse : **l'état final est le défaut CSS**. Les animations partent d'un état
+absent (`gsap.from`) et n'y vont jamais. Sans GSAP, Lenis ou Three.js, la page reste
+complète et utilisable. `prefers-reduced-motion` coupe tout.
 
 ## À remplacer avant mise en production
 
