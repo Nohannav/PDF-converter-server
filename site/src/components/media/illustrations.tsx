@@ -292,7 +292,7 @@ function Festoon({ y = 90, night, width = 800 }: { y?: number; night: boolean; w
     <g>
       <path d={`M0 ${y} Q${width / 2} ${y + 92} ${width} ${y}`} fill="none" stroke={night ? "#4a3a30" : "#6e5a48"} strokeWidth="2" />
       {bulbs.map((b, i) => (
-        <g key={i}>
+        <g key={i} className="ill-twinkle" style={{ animationDelay: `${(i * 0.37) % 3}s` }}>
           {night && <circle cx={b.x} cy={b.y + 8} r="16" fill={C.amber} opacity="0.18" />}
           <circle cx={b.x} cy={b.y + 8} r="5.5" fill={night ? "#ffd99a" : "#f4d9a8"} />
           <rect x={b.x - 2.5} y={b.y} width="5" height="4" fill={night ? "#4a3a30" : "#6e5a48"} />
@@ -343,8 +343,8 @@ function CombiScene({ variant, tone }: { variant: CombiVariant; tone: Illustrati
       {variant !== "closed" && variant !== "pro" && <Festoon y={56} night={night} />}
       {variant === "dj" && night && (
         <g opacity="0.5">
-          <path d="M300 230 L180 0 L250 0 Z" fill={C.rose} opacity="0.35" />
-          <path d="M500 230 L560 0 L630 0 Z" fill={C.violet} opacity="0.45" />
+          <path className="ill-sweep" style={{ transformOrigin: "300px 230px" }} d="M300 230 L180 0 L250 0 Z" fill={C.rose} opacity="0.35" />
+          <path className="ill-sweep ill-sweep-rev" style={{ transformOrigin: "500px 230px" }} d="M500 230 L560 0 L630 0 Z" fill={C.violet} opacity="0.45" />
         </g>
       )}
       <g transform="translate(190 236)">
@@ -374,10 +374,10 @@ function CombiScene({ variant, tone }: { variant: CombiVariant; tone: Illustrati
       )}
       {variant === "bar" && (
         <g>
-          <rect x="636" y="400" width="54" height="72" rx="4" fill="#2a2420" />
-          <rect x="642" y="406" width="42" height="40" rx="2" fill="#1a1614" />
-          <path d="M650 418 h26 M650 428 h18" stroke={C.white} strokeOpacity="0.7" strokeWidth="3" strokeLinecap="round" />
-          <path d="M636 472 L630 476 M690 472 L696 476" stroke="#2a2420" strokeWidth="4" />
+          <rect x="630" y="410" width="44" height="62" rx="4" fill="#2a2420" />
+          <rect x="635" y="415" width="34" height="34" rx="2" fill="#1a1614" />
+          <path d="M641 426 h22 M641 435 h15" stroke={C.white} strokeOpacity="0.7" strokeWidth="3" strokeLinecap="round" />
+          <path d="M630 472 L625 476 M674 472 L679 476" stroke="#2a2420" strokeWidth="4" />
         </g>
       )}
     </>
@@ -425,9 +425,9 @@ function DiscoExterior() {
       ))}
       {/* Faisceaux */}
       <g opacity="0.55">
-        <path d="M420 250 L250 0 L320 0 Z" fill={C.rose} opacity="0.4" />
-        <path d="M440 250 L520 0 L590 0 Z" fill={C.violet} opacity="0.6" />
-        <path d="M430 250 L700 20 L740 70 Z" fill={C.amber} opacity="0.25" />
+        <path className="ill-sweep" style={{ transformOrigin: "420px 250px" }} d="M420 250 L250 0 L320 0 Z" fill={C.rose} opacity="0.4" />
+        <path className="ill-sweep ill-sweep-rev" style={{ transformOrigin: "440px 250px" }} d="M440 250 L520 0 L590 0 Z" fill={C.violet} opacity="0.6" />
+        <path className="ill-sweep ill-sweep-slow" style={{ transformOrigin: "430px 250px" }} d="M430 250 L700 20 L740 70 Z" fill={C.amber} opacity="0.25" />
       </g>
       <rect y="470" width="800" height="90" fill="#0a0710" />
       {/* Piste lumineuse au sol */}
@@ -441,7 +441,9 @@ function DiscoExterior() {
               <path
                 key={`${r}-${c}`}
                 d={`M${x} ${r * 22} l${w0 - 4} 0 l${8} 20 l${-(w0 + 4)} 0 Z`}
-                transform={`translate(${r * 0} 6)`}
+                transform="translate(0 6)"
+                className="ill-tile"
+                style={{ animationDelay: `${((r * 5 + c * 3) % 7) * 0.35}s` }}
                 fill={colors[(r + c) % colors.length]}
                 opacity={0.35 + ((r * 7 + c * 3) % 5) * 0.1}
               />
@@ -519,6 +521,8 @@ function DiscoDancefloor() {
           opacity={0.3 + (((r + 1) * (c + 2)) % 6) * 0.11}
           stroke="#0d0913"
           strokeWidth="2.5"
+          className="ill-tile"
+          style={{ animationDelay: `${((r * 5 + c * 3) % 9) * 0.3}s` }}
         />,
       );
     }
@@ -544,6 +548,7 @@ function DiscoDancefloor() {
       <path d="M0 120 Q400 -60 800 120" fill="none" stroke="#f4ecdf" strokeOpacity="0.12" strokeWidth="18" />
       <path d="M0 330 L800 330" stroke="#000" strokeOpacity="0.3" />
       {/* Rayons */}
+      <g className="ill-spin" style={{ transformOrigin: "400px 150px" }}>
       {Array.from({ length: 14 }, (_, i) => {
         const a = (i / 14) * Math.PI * 2;
         const x2 = 400 + Math.cos(a) * 520;
@@ -561,6 +566,7 @@ function DiscoDancefloor() {
           />
         );
       })}
+      </g>
       {tiles}
       <line x1="400" y1="0" x2="400" y2="96" stroke="#c9c2d6" strokeWidth="2" />
       <circle cx="400" cy="150" r="54" fill={`url(#${uid}-ball)`} />
@@ -577,7 +583,7 @@ function DiscoDancefloor() {
         [420, 132],
         [388, 170],
       ].map(([x, y]) => (
-        <circle key={`${x}`} cx={x} cy={y} r="3" fill="#fff" />
+        <circle key={`${x}`} cx={x} cy={y} r="3" fill="#fff" className="ill-twinkle" style={{ animationDelay: `${x % 3}s` }} />
       ))}
     </>
   );

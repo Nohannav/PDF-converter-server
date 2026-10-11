@@ -7,6 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Faq } from "@/components/ui/Faq";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Media } from "@/components/media/Media";
+import { Scribble } from "@/components/ui/Brand";
 import { Gallery } from "@/components/media/Gallery";
 import { FinalCta, PageHero, PracticalInfoList } from "@/components/sections/shared";
 import { QuoteSection } from "@/components/sections/QuoteSection";
@@ -121,12 +122,12 @@ export default function CombiPage() {
         <SectionHeading
           id="configurations-titre"
           eyebrow="Configurations"
-          title="Un véhicule, plusieurs vies"
+          title={<>Un véhicule, plusieurs <Scribble>vies</Scribble></>}
           intro="Le combi s'adapte à votre événement. Besoin d'une installation particulière ? Parlez-nous de votre idée : nous vous dirons ce qui est réalisable."
         />
         <div className="space-y-8">
           {configurations.map((c, i) => (
-            <Reveal as="article" key={c.id} className="grid overflow-hidden rounded-[2rem] bg-paper ring-1 ring-ink/5 lg:grid-cols-2">
+            <Reveal as="article" key={c.id} className="spotlight grid overflow-hidden rounded-[2rem] bg-paper ring-1 ring-ink/5 lg:grid-cols-2">
               <Media
                 media={resolveMedia(c.slot)}
                 sizes="(min-width: 1024px) 50vw, 100vw"

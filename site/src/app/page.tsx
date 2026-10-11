@@ -7,6 +7,7 @@ import { Container, Section, SectionHeading } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { Media } from "@/components/media/Media";
 import { Gallery } from "@/components/media/Gallery";
+import { Awning, Marquee, Scribble, SpinningBadge } from "@/components/ui/Brand";
 import { FinalCta, ProcessSteps, Testimonials } from "@/components/sections/shared";
 import { getGalleryItems, resolveMedia } from "@/lib/media";
 import { pageMetadata } from "@/lib/seo";
@@ -40,7 +41,14 @@ function HomeHero() {
         Bar mobile · Espace DJ · Mini-discothèque
       </p>
       <h1 className="text-[2.9rem] leading-[0.98] font-medium sm:text-7xl lg:text-[5.4rem]">
-        Faites de votre événement un moment <em className="font-light text-copper-light italic">inoubliable.</em>
+        {["Faites de votre", "événement", "un moment"].map((line, i) => (
+          <span key={line} className="line-in" style={{ "--d": `${i * 110}ms` } as React.CSSProperties}>
+            {line}&nbsp;
+          </span>
+        ))}
+        <em className="line-in font-light text-copper-light italic" style={{ "--d": "380ms" } as React.CSSProperties}>
+          inoubliable.
+        </em>
       </h1>
       <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/80 sm:text-xl">
         Un combi Volkswagen transformé en bar ou en espace DJ, une mini-discothèque itinérante… Des concepts originaux
@@ -58,6 +66,10 @@ function HomeHero() {
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/20 lg:bg-gradient-to-r lg:from-ink/90 lg:via-ink/50 lg:to-transparent" />
         <Container className="relative pt-32 pb-16 lg:pb-24">
           <div className="max-w-3xl animate-rise-in">{text}</div>
+          <SpinningBadge
+            text="Bar mobile ✦ Espace DJ ✦ Disco ✦ "
+            className="absolute right-8 bottom-16 hidden lg:block"
+          />
         </Container>
       </section>
     );
@@ -69,13 +81,19 @@ function HomeHero() {
       <div aria-hidden className="absolute top-1/3 right-0 size-[60vmax] translate-x-1/3 rounded-full bg-[radial-gradient(circle,rgba(195,139,85,0.18),transparent_65%)]" />
       <Container className="relative grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
         <div className="animate-rise-in">{text}</div>
+        <div className="relative">
         <Media
           media={hero}
           priority
           tone="night"
           sizes="(min-width: 1024px) 50vw, 100vw"
-          className="aspect-[4/3] animate-fade-in rounded-[2rem] shadow-[0_50px_120px_-40px_rgba(0,0,0,0.9)] ring-1 ring-cream/10 lg:aspect-square"
+          className="float-soft aspect-[4/3] animate-fade-in rounded-[2rem] shadow-[0_50px_120px_-40px_rgba(0,0,0,0.9)] ring-1 ring-cream/10 lg:aspect-square"
         />
+          <SpinningBadge
+            text="Bar mobile ✦ Espace DJ ✦ Disco ✦ "
+            className="absolute -bottom-10 -left-4 sm:-left-10 lg:-bottom-12"
+          />
+        </div>
       </Container>
     </section>
   );
@@ -126,18 +144,29 @@ export default function HomePage() {
   return (
     <>
       <HomeHero />
+      <div className="bg-ink text-cream">
+        <Marquee
+          items={["Mariages", "Bar mobile", "Anniversaires", "Espace DJ", "Soirées privées", "Mini-discothèque", "Salons", "Lancements"]}
+          className="border-t border-cream/10"
+        />
+      </div>
+      <Awning className="relative z-10 -mb-7 bg-paper sm:-mb-9" />
 
       {/* Les deux concepts */}
       <Section id="concepts" tone="paper" aria-labelledby="concepts-titre">
         <SectionHeading
           id="concepts-titre"
           eyebrow="Nos concepts"
-          title="Deux installations, mille façons de faire la fête"
+          title={
+            <>
+              Deux installations, mille façons de faire <Scribble>la fête</Scribble>
+            </>
+          }
           intro="Choisissez l'univers qui correspond à votre événement, ou associez les deux pour créer un véritable espace festif."
         />
         <div className="grid gap-8 lg:grid-cols-2">
           {concepts.map((c, i) => (
-            <Reveal as="article" key={c.href} delay={i * 120} className="group relative flex flex-col overflow-hidden rounded-[2rem] bg-cream ring-1 ring-ink/5">
+            <Reveal as="article" key={c.href} delay={i * 120} className="spotlight group relative flex flex-col overflow-hidden rounded-[2rem] bg-cream ring-1 ring-ink/5">
               <Media
                 media={resolveMedia(c.slot)}
                 tone={c.tone}
@@ -182,7 +211,7 @@ export default function HomePage() {
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {eventTypes.map((e, i) => (
             <Reveal as="li" key={e.title} delay={(i % 3) * 90}>
-              <Link href={e.href} className="group relative block overflow-hidden rounded-3xl">
+              <Link href={e.href} className="spotlight group relative block overflow-hidden rounded-3xl">
                 <Media
                   media={resolveMedia(e.slot)}
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
@@ -208,7 +237,11 @@ export default function HomePage() {
           <SectionHeading
             id="pourquoi-titre"
             eyebrow="Pourquoi nous choisir"
-            title="L'originalité, sans la complication"
+            title={
+              <>
+                L&apos;originalité, sans la <Scribble>complication</Scribble>
+              </>
+            }
             intro="Nous apportons l'installation, l'ambiance et l'accompagnement. Vous profitez de votre événement."
             className="lg:sticky lg:top-32 lg:self-start"
           />

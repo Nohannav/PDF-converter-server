@@ -151,3 +151,157 @@
 .animate-rise-in {
   animation: rise-in 0.7s var(--ease-soft) both;
 }
+
+/* ───────── Univers animé ─────────
+   Animations CSS légères (opacité / transformation uniquement, compatibles GPU).
+   Toutes sont désactivées si l'utilisateur demande de réduire les animations. */
+@media (prefers-reduced-motion: no-preference) {
+  /* Illustrations : guirlandes, faisceaux, piste de danse, boule à facettes */
+  .ill-twinkle {
+    animation: twinkle 3.2s ease-in-out infinite;
+  }
+  .ill-sweep {
+    transform-box: view-box;
+    animation: sweep 7s ease-in-out infinite alternate;
+  }
+  .ill-sweep-rev {
+    animation-direction: alternate-reverse;
+    animation-duration: 8.5s;
+  }
+  .ill-sweep-slow {
+    animation-duration: 11s;
+  }
+  .ill-tile {
+    animation: tile-pulse 2.8s ease-in-out infinite;
+  }
+  .ill-spin {
+    transform-box: view-box;
+    animation: spin 40s linear infinite;
+  }
+
+  /* Bandeau défilant */
+  .marquee-track {
+    animation: marquee 38s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* Badge circulaire */
+  .spin-slow {
+    animation: spin 24s linear infinite;
+  }
+
+  /* Titre du hero : apparition ligne par ligne */
+  .line-in {
+    display: inline-block;
+    animation: line-in 1s var(--ease-soft) both;
+    animation-delay: var(--d, 0ms);
+  }
+
+  /* Soulignement dessiné à la main, tracé quand la section apparaît */
+  .js [data-reveal] .scribble path {
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1.2s var(--ease-soft) 0.35s;
+  }
+  .js [data-reveal][data-visible="true"] .scribble path {
+    stroke-dashoffset: 0;
+  }
+
+  /* Léger flottement */
+  .float-soft {
+    animation: float-soft 6s ease-in-out infinite;
+  }
+
+  /* Ligne de progression des étapes */
+  .js [data-reveal] .draw-line {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.4s var(--ease-soft) 0.2s;
+  }
+  .js [data-reveal][data-visible="true"] .draw-line {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+@keyframes sweep {
+  from {
+    transform: rotate(-7deg);
+  }
+  to {
+    transform: rotate(7deg);
+  }
+}
+@keyframes tile-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes line-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.45em) rotate(1.5deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Lueur qui suit le pointeur sur les cartes (variables mises à jour en JS) */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(226, 176, 124, 0.16),
+    transparent 60%
+  );
+}
+@media (hover: hover) {
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+}

@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 import { DevConfigNotice } from "@/components/layout/DevConfigNotice";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { SpotlightTracker } from "@/components/ui/Spotlight";
 import { organizationJsonLd } from "@/lib/seo";
 import "./globals.css";
 
@@ -67,6 +68,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Footer />
         <MobileCtaBar telHref={tel} />
         <DevConfigNotice />
+        <SpotlightTracker />
         <JsonLd data={organizationJsonLd()} />
       </body>
     </html>

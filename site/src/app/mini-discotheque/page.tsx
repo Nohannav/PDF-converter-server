@@ -7,6 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Faq } from "@/components/ui/Faq";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Media } from "@/components/media/Media";
+import { Marquee, Scribble } from "@/components/ui/Brand";
 import { Gallery } from "@/components/media/Gallery";
 import { FinalCta, PageHero, PracticalInfoList } from "@/components/sections/shared";
 import { QuoteSection } from "@/components/sections/QuoteSection";
@@ -69,6 +70,10 @@ export default function DiscoPage() {
         }
       />
 
+      <Marquee
+        items={["Lumières", "Musique", "Piste de danse", "Effet waouh", "Boule à facettes", "Bonne humeur"]}
+        className="border-y border-cream/10 text-cream/90 [&_.text-copper-light]:text-neon"
+      />
       <Section tone="night" aria-labelledby="disco-concept-titre">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <SectionHeading
@@ -96,7 +101,7 @@ export default function DiscoPage() {
       </Section>
 
       <Section id="experience" tone="night" className="pt-0 sm:pt-0 lg:pt-0" aria-labelledby="experience-titre">
-        <SectionHeading id="experience-titre" eyebrow="L'expérience" title="La piste de danse la plus convoitée de la soirée" />
+        <SectionHeading id="experience-titre" eyebrow="L'expérience" title={<>La piste de danse la plus <Scribble className="[&_svg]:text-neon">convoitée</Scribble> de la soirée</>} />
         <ul className="grid gap-6 md:grid-cols-3">
           {experience.map((e, i) => (
             <Reveal as="li" key={e.title} delay={i * 90} className="rounded-3xl bg-night-2 p-8 ring-1 ring-cream/10">

@@ -117,6 +117,7 @@ export function ProcessSteps({ dark = false }: { dark?: boolean }) {
         {steps.map((step, i) => (
           <Reveal as="li" key={step.title} delay={i * 90} className={cn("relative rounded-3xl p-7", dark ? "bg-cream/5 ring-1 ring-cream/10" : "bg-paper ring-1 ring-ink/5")}>
             <span className="font-display text-6xl font-light text-copper">{String(i + 1).padStart(2, "0")}</span>
+            <span aria-hidden className="draw-line mt-4 block h-px bg-copper/60" />
             <h3 className="mt-4 font-sans text-lg font-bold tracking-normal">{step.title}</h3>
             <p className={cn("mt-2 leading-relaxed", dark ? "text-cream/70" : "text-ink/70")}>{step.text}</p>
           </Reveal>
