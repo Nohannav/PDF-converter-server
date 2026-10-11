@@ -72,7 +72,7 @@ export default function CombiPage() {
         eyebrow="Concept n° 1 · Combi Volkswagen"
         title={
           <>
-            Le combi qui fait <em className="font-light text-copper-light italic">l&apos;événement</em>
+            Le combi qui fait <em className="font-light text-bordeaux italic">l&apos;événement</em>
           </>
         }
         intro="Un authentique combi Volkswagen vintage, rouge et blanc, aménagé en bar mobile, en espace DJ ou en stand de marque. Le décor et l'animation, réunis dans un seul véhicule."
@@ -83,7 +83,7 @@ export default function CombiPage() {
             <ButtonLink href="#devis" size="lg">
               Demander un devis <ArrowRight className="size-4" aria-hidden />
             </ButtonLink>
-            <ButtonLink href="#configurations" variant="outline-light" size="lg">
+            <ButtonLink href="#configurations" variant="secondary" size="lg">
               Voir les configurations
             </ButtonLink>
           </>
@@ -127,14 +127,14 @@ export default function CombiPage() {
         />
         <div className="space-y-8">
           {configurations.map((c, i) => (
-            <Reveal as="article" key={c.id} className="spotlight grid overflow-hidden rounded-[2rem] bg-paper ring-1 ring-ink/5 lg:grid-cols-2">
+            <Reveal as="article" key={c.id} className="spotlight grid overflow-hidden rounded-[2rem] bg-paper ring-1 ring-line lg:grid-cols-2">
               <Media
                 media={resolveMedia(c.slot)}
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className={i % 2 === 1 ? "aspect-[4/3] lg:order-2 lg:aspect-auto lg:min-h-[26rem]" : "aspect-[4/3] lg:aspect-auto lg:min-h-[26rem]"}
               />
               <div id={c.id} className="flex flex-col justify-center p-7 sm:p-12">
-                <span className="flex size-12 items-center justify-center rounded-2xl bg-combi text-cream">
+                <span className="flex size-12 items-center justify-center rounded-2xl bg-bordeaux/10 text-bordeaux">
                   <c.icon className="size-6" aria-hidden />
                 </span>
                 <h3 className="mt-6 text-3xl font-medium sm:text-4xl">{c.title}</h3>
@@ -142,7 +142,7 @@ export default function CombiPage() {
                 <ul className="mt-6 space-y-2.5">
                   {c.points.map((p) => (
                     <li key={p} className="flex items-start gap-3">
-                      <span aria-hidden className="mt-2.5 h-px w-4 shrink-0 bg-combi" />
+                      <span aria-hidden className="mt-2.5 h-px w-4 shrink-0 bg-bordeaux" />
                       {p}
                     </li>
                   ))}
@@ -164,13 +164,13 @@ export default function CombiPage() {
       </Section>
 
       {/* Exemples d'utilisation */}
-      <Section tone="ink" aria-labelledby="usages-titre">
+      <Section tone="cream" aria-labelledby="usages-titre">
         <SectionHeading id="usages-titre" eyebrow="Exemples d'utilisation" title="Mariages, soirées, salons : il trouve toujours sa place" />
         <ul className="grid gap-6 md:grid-cols-3">
           {occasions.map((o, i) => (
-            <Reveal as="li" key={o.title} delay={i * 90} className="rounded-3xl bg-cream/5 p-8 ring-1 ring-cream/10">
+            <Reveal as="li" key={o.title} delay={i * 90} className="rounded-3xl bg-paper p-8 ring-1 ring-line">
               <h3 className="text-2xl font-medium">{o.title}</h3>
-              <p className="mt-3 leading-relaxed text-cream/70">{o.text}</p>
+              <p className="mt-3 leading-relaxed text-stone">{o.text}</p>
             </Reveal>
           ))}
         </ul>

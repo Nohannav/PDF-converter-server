@@ -1,14 +1,12 @@
 import { cn } from "@/lib/cn";
 import { Reveal } from "./Reveal";
 
-type Tone = "paper" | "cream" | "sand" | "ink" | "night";
+type Tone = "paper" | "cream" | "sand";
 
 const tones: Record<Tone, string> = {
   paper: "bg-paper text-ink",
   cream: "bg-cream text-ink",
-  sand: "bg-sand text-ink",
-  ink: "bg-ink text-cream grain",
-  night: "bg-night text-cream grain",
+  sand: "bg-sand/60 text-ink",
 };
 
 export function Container({ className, children }: { className?: string; children: React.ReactNode }) {
@@ -39,8 +37,8 @@ export function Section({
 
 export function Eyebrow({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <p className={cn("mb-4 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-copper", className)}>
-      <span aria-hidden className="h-px w-8 bg-current" />
+    <p className={cn("mb-4 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-bronze", className)}>
+      <span aria-hidden className="h-px w-8 bg-bordeaux" />
       {children}
     </p>
   );
@@ -69,7 +67,7 @@ export function SectionHeading({
       <Tag id={id} className="text-4xl leading-[1.05] font-medium sm:text-5xl lg:text-[3.5rem]">
         {title}
       </Tag>
-      {intro && <div className="mt-5 text-lg leading-relaxed opacity-80">{intro}</div>}
+      {intro && <div className="mt-5 text-lg leading-relaxed text-stone">{intro}</div>}
     </Reveal>
   );
 }

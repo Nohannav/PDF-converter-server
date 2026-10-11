@@ -5,7 +5,7 @@ import { isSet } from "@/config/site";
 export function LegalLayout({ title, path, children }: { title: string; path: string; children: React.ReactNode }) {
   return (
     <>
-      <section className="grain bg-ink pt-28 pb-14 text-cream lg:pt-36">
+      <section className="bg-cream pt-28 pb-14 text-ink lg:pt-36">
         <Container>
           <Breadcrumbs items={[{ name: title, path }]} />
           <h1 className="mt-8 text-4xl font-medium sm:text-6xl">{title}</h1>

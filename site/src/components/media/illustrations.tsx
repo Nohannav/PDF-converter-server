@@ -590,12 +590,12 @@ function DiscoDancefloor() {
 }
 
 const eventIcons: Record<string, { icon: LucideIcon; bg: [string, string]; fg: string }> = {
-  "event-wedding": { icon: Heart, bg: ["#f3e7da", "#e4cdb4"], fg: "#7d1a22" },
-  "event-birthday": { icon: Cake, bg: ["#b3262d", "#7d1a22"], fg: "#f7f1e6" },
-  "event-private": { icon: GlassWater, bg: ["#2a1c16", "#141110"], fg: "#e2b07c" },
-  "event-corporate": { icon: Briefcase, bg: ["#1f1b19", "#3a302a"], fg: "#f7f1e6" },
-  "event-tradeshow": { icon: Presentation, bg: ["#ece3d3", "#d9c7aa"], fg: "#141110" },
-  "event-launch": { icon: Sparkles, bg: ["#c38b55", "#8f5f33"], fg: "#141110" },
+  "event-wedding": { icon: Heart, bg: ["#fbf8f3", "#efe5d8"], fg: "#74232e" },
+  "event-birthday": { icon: Cake, bg: ["#f6f1e8", "#e5d7c6"], fg: "#74232e" },
+  "event-private": { icon: GlassWater, bg: ["#efe5d8", "#e0cfba"], fg: "#5f4a3a" },
+  "event-corporate": { icon: Briefcase, bg: ["#fbf8f3", "#ebe1d3"], fg: "#231d19" },
+  "event-tradeshow": { icon: Presentation, bg: ["#f3ece2", "#e5d7c6"], fg: "#231d19" },
+  "event-launch": { icon: Sparkles, bg: ["#efe5d8", "#ddcab3"], fg: "#74232e" },
 };
 
 function EventScene({ name }: { name: keyof typeof eventIcons }) {

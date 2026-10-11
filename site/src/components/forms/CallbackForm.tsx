@@ -87,7 +87,7 @@ export function CallbackForm() {
   }
 
   return (
-    <div ref={rootRef} className="rounded-3xl bg-paper p-5 ring-1 ring-ink/5 sm:p-8">
+    <div ref={rootRef} className="rounded-3xl bg-paper p-5 ring-1 ring-line sm:p-8">
       <form noValidate onSubmit={onSubmit} className="relative space-y-6">
         <Honeypot value={data.website} onChange={(v) => set("website", v)} />
         <div className="grid gap-6 sm:grid-cols-2">
@@ -143,7 +143,7 @@ export function CallbackForm() {
           </Link>
           .
         </Checkbox>
-        <p className="rounded-xl bg-sand/60 px-4 py-3 text-sm text-ink/80">
+        <p className="rounded-xl bg-cream px-4 py-3 text-sm text-ink/80">
           Une demande de rappel n&apos;est pas un rendez-vous confirmé : l&apos;agence vous recontacte pour valider le créneau.
         </p>
         {turnstileEnabled && <Turnstile onToken={setTurnstileToken} />}

@@ -49,7 +49,7 @@ export function Media({
             className={cn("absolute inset-0 h-full w-full", imgClassName)}
           />
           {showPlaceholderBadge && (
-            <span className="absolute bottom-3 left-3 rounded-full bg-ink/70 px-2.5 py-1 text-[0.7rem] font-medium tracking-wide text-cream backdrop-blur-sm">
+            <span className="absolute bottom-3 left-3 rounded-full bg-paper/85 px-2.5 py-1 text-[0.7rem] font-medium tracking-wide text-ink ring-1 ring-line backdrop-blur-sm">
               Illustration — photo à venir
             </span>
           )}

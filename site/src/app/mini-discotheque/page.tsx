@@ -40,7 +40,7 @@ export default function DiscoPage() {
   const gallery = getGalleryItems().filter((i) => i.category === "mini-discotheque");
 
   return (
-    <div className="bg-night text-cream">
+    <>
       <JsonLd
         data={[
           serviceJsonLd({ name: "Location de mini-discothèque en caravane", description: DESCRIPTION, path: PATH, serviceType: "Animation événementielle — discothèque mobile" }),
@@ -48,11 +48,11 @@ export default function DiscoPage() {
         ]}
       />
       <PageHero
-        tone="night"
+        mediaTone="night"
         eyebrow="Concept n° 2 · Mini-discothèque"
         title={
           <>
-            La plus petite discothèque <em className="font-light text-neon italic">du monde</em>
+            La plus petite discothèque <em className="font-light text-bordeaux italic">du monde</em>
           </>
         }
         intro="Une caravane transformée en mini-discothèque, avec sa piste de danse, ses lumières et sa musique. Une expérience insolite, conviviale et franchement mémorable."
@@ -63,18 +63,17 @@ export default function DiscoPage() {
             <ButtonLink href="#devis" size="lg">
               Demander un devis <ArrowRight className="size-4" aria-hidden />
             </ButtonLink>
-            <ButtonLink href="#experience" variant="outline-light" size="lg">
+            <ButtonLink href="#experience" variant="secondary" size="lg">
               Découvrir l&apos;expérience
             </ButtonLink>
           </>
         }
       />
 
-      <Marquee
-        items={["Lumières", "Musique", "Piste de danse", "Effet waouh", "Boule à facettes", "Bonne humeur"]}
-        className="border-y border-cream/10 text-cream/90 [&_.text-copper-light]:text-neon"
-      />
-      <Section tone="night" aria-labelledby="disco-concept-titre">
+      <div className="border-y border-line bg-paper">
+        <Marquee items={["Lumières", "Musique", "Piste de danse", "Effet waouh", "Boule à facettes", "Bonne humeur"]} />
+      </div>
+      <Section tone="paper" aria-labelledby="disco-concept-titre">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <SectionHeading
             id="disco-concept-titre"
@@ -95,49 +94,47 @@ export default function DiscoPage() {
             className="mb-0! lg:mb-0!"
           />
           <Reveal>
-            <Media media={resolveMedia("discoDancefloor")} sizes="(min-width: 1024px) 50vw, 100vw" className="aspect-[4/3] rounded-[2rem] ring-1 ring-cream/10" />
+            <Media media={resolveMedia("discoDancefloor")} sizes="(min-width: 1024px) 50vw, 100vw" className="aspect-[4/3] rounded-[2rem] ring-1 ring-line" />
           </Reveal>
         </div>
       </Section>
 
-      <Section id="experience" tone="night" className="pt-0 sm:pt-0 lg:pt-0" aria-labelledby="experience-titre">
-        <SectionHeading id="experience-titre" eyebrow="L'expérience" title={<>La piste de danse la plus <Scribble className="[&_svg]:text-neon">convoitée</Scribble> de la soirée</>} />
+      <Section id="experience" tone="cream" aria-labelledby="experience-titre">
+        <SectionHeading id="experience-titre" eyebrow="L'expérience" title={<>La piste de danse la plus <Scribble>convoitée</Scribble> de la soirée</>} />
         <ul className="grid gap-6 md:grid-cols-3">
           {experience.map((e, i) => (
-            <Reveal as="li" key={e.title} delay={i * 90} className="rounded-3xl bg-night-2 p-8 ring-1 ring-cream/10">
-              <span className="flex size-12 items-center justify-center rounded-2xl bg-neon/15 text-neon">
+            <Reveal as="li" key={e.title} delay={i * 90} className="rounded-3xl bg-paper p-8 ring-1 ring-line">
+              <span className="flex size-12 items-center justify-center rounded-2xl bg-bordeaux/10 text-bordeaux">
                 <e.icon className="size-6" aria-hidden />
               </span>
               <h3 className="mt-5 text-2xl font-medium">{e.title}</h3>
-              <p className="mt-3 leading-relaxed text-cream/70">{e.text}</p>
+              <p className="mt-3 leading-relaxed text-stone">{e.text}</p>
             </Reveal>
           ))}
         </ul>
-        <p className="mt-6 text-sm text-cream/55">
+        <p className="mt-6 text-sm text-stone">
           Le détail des équipements (son, lumières, décoration) vous est présenté lors de l&apos;échange préparatoire.
         </p>
       </Section>
 
-      <Section tone="night" className="border-t border-cream/10" aria-labelledby="disco-usages-titre">
+      <Section tone="paper" aria-labelledby="disco-usages-titre">
         <SectionHeading id="disco-usages-titre" eyebrow="Pour quels événements ?" title="Faites danser vos invités autrement" />
         <ul className="grid gap-6 md:grid-cols-3">
           {occasions.map((o, i) => (
-            <Reveal as="li" key={o.title} delay={i * 90} className="border-t border-neon/40 pt-6">
+            <Reveal as="li" key={o.title} delay={i * 90} className="border-t border-bordeaux/40 pt-6">
               <h3 className="text-3xl font-medium">{o.title}</h3>
-              <p className="mt-3 leading-relaxed text-cream/70">{o.text}</p>
+              <p className="mt-3 leading-relaxed text-stone">{o.text}</p>
             </Reveal>
           ))}
         </ul>
       </Section>
 
-      <Section tone="night" className="border-t border-cream/10" aria-labelledby="disco-galerie-titre">
+      <Section tone="cream" aria-labelledby="disco-galerie-titre">
         <SectionHeading id="disco-galerie-titre" eyebrow="Galerie" title="Dans l'ambiance" />
-        <div className="[&_.text-stone]:text-cream/60">
-          <Gallery items={gallery} layout="grid" />
-        </div>
+        <Gallery items={gallery} layout="grid" />
       </Section>
 
-      <Section tone="night" className="border-t border-cream/10" aria-labelledby="disco-pratique-titre">
+      <Section tone="paper" aria-labelledby="disco-pratique-titre">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <SectionHeading
             id="disco-pratique-titre"
@@ -145,25 +142,23 @@ export default function DiscoPage() {
             title="Ce que nous validons ensemble"
             intro="Emplacement, alimentation électrique, accès, contraintes sonores : ces points techniques sont confirmés avec vous avant toute réservation."
           />
-          <PracticalInfoList items={discoPracticalInfo} dark />
+          <PracticalInfoList items={discoPracticalInfo} />
         </div>
       </Section>
 
-      <Section tone="night" className="border-t border-cream/10" aria-labelledby="disco-faq-titre">
+      <Section tone="cream" aria-labelledby="disco-faq-titre">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <SectionHeading id="disco-faq-titre" eyebrow="FAQ" title="Vos questions sur la mini-discothèque" />
-          <Faq items={discoFaq} dark />
+          <Faq items={discoFaq} />
         </div>
       </Section>
 
-      <div className="text-ink">
-        <QuoteSection
-          title="Réservez la mini-discothèque"
-          intro="Indiquez la date et le lieu de votre événement : nous vous confirmons la disponibilité et vous envoyons une proposition personnalisée."
-          concept="mini-disco"
-        />
-      </div>
+      <QuoteSection
+        title="Réservez la mini-discothèque"
+        intro="Indiquez la date et le lieu de votre événement : nous vous confirmons la disponibilité et vous envoyons une proposition personnalisée."
+        concept="mini-disco"
+      />
       <FinalCta />
-    </div>
+    </>
   );
 }

@@ -19,28 +19,28 @@ export function Footer() {
   const locality = [address.postalCode, address.city].filter(isSet).join(" ");
 
   return (
-    <footer className="grain bg-ink pt-20 pb-28 text-cream lg:pb-12">
+    <footer className="border-t border-line bg-cream pt-20 pb-28 text-ink lg:pb-12">
       <Container>
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="max-w-sm">
             <Link href="/" aria-label="Retour à l'accueil" className="inline-block rounded-lg">
-              <Logo light />
+              <Logo />
             </Link>
-            <p className="mt-6 leading-relaxed text-cream/70">
+            <p className="mt-6 leading-relaxed text-stone">
               Un combi Volkswagen vintage transformé en bar ou en espace DJ, et la plus petite discothèque du monde,
               pour des événements qui ne ressemblent à aucun autre.
             </p>
             {isSet(serviceArea.label) && (
-              <p className="mt-4 text-sm text-cream/60">Zone d&apos;intervention : {serviceArea.label}</p>
+              <p className="mt-4 text-sm text-stone">Zone d&apos;intervention : {serviceArea.label}</p>
             )}
           </div>
 
           <nav aria-label="Pages du site">
-            <h2 className="mb-5 font-sans text-xs font-bold uppercase tracking-[0.2em] text-copper">Le site</h2>
-            <ul className="space-y-3 text-cream/75">
+            <h2 className="mb-5 font-sans text-xs font-bold uppercase tracking-[0.2em] text-bronze">Le site</h2>
+            <ul className="space-y-3 text-stone">
               {[{ href: "/", label: "Accueil" }, ...mainNav].map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-cream">
+                  <Link href={item.href} className="hover:text-bordeaux">
                     {item.label}
                   </Link>
                 </li>
@@ -49,18 +49,18 @@ export function Footer() {
           </nav>
 
           <div>
-            <h2 className="mb-5 font-sans text-xs font-bold uppercase tracking-[0.2em] text-copper">Contact</h2>
-            <ul className="space-y-3 text-cream/75">
+            <h2 className="mb-5 font-sans text-xs font-bold uppercase tracking-[0.2em] text-bronze">Contact</h2>
+            <ul className="space-y-3 text-stone">
               {tel && (
                 <li>
-                  <a href={tel} className="inline-flex items-center gap-2 hover:text-cream">
+                  <a href={tel} className="inline-flex items-center gap-2 hover:text-bordeaux">
                     <Phone className="size-4" aria-hidden /> {contact.phoneDisplay || contact.phone}
                   </a>
                 </li>
               )}
               {isSet(contact.email) && (
                 <li>
-                  <a href={`mailto:${contact.email}`} className="inline-flex items-center gap-2 break-all hover:text-cream">
+                  <a href={`mailto:${contact.email}`} className="inline-flex items-center gap-2 break-all hover:text-bordeaux">
                     <Mail className="size-4 shrink-0" aria-hidden /> {contact.email}
                   </a>
                 </li>
@@ -81,17 +81,17 @@ export function Footer() {
               )}
               {isSet(openingHoursLabel) && <li className="text-sm">{openingHoursLabel}</li>}
               <li>
-                <Link href="/contact#devis" className="hover:text-cream">
+                <Link href="/contact#devis" className="hover:text-bordeaux">
                   Demander un devis
                 </Link>
               </li>
               <li>
-                <Link href="/contact#rendez-vous" className="hover:text-cream">
+                <Link href="/contact#rendez-vous" className="hover:text-bordeaux">
                   Prendre rendez-vous
                 </Link>
               </li>
               <li>
-                <Link href="/contact#rappel" className="hover:text-cream">
+                <Link href="/contact#rappel" className="hover:text-bordeaux">
                   Être rappelé(e)
                 </Link>
               </li>
@@ -101,11 +101,11 @@ export function Footer() {
           <div>
             {socials.length > 0 && (
               <>
-                <h2 className="mb-5 font-sans text-xs font-bold uppercase tracking-[0.2em] text-copper">Suivez-nous</h2>
-                <ul className="mb-8 space-y-3 text-cream/75">
+                <h2 className="mb-5 font-sans text-xs font-bold uppercase tracking-[0.2em] text-bronze">Suivez-nous</h2>
+                <ul className="mb-8 space-y-3 text-stone">
                   {socials.map((s) => (
                     <li key={s.key}>
-                      <a href={s.href} target="_blank" rel="noopener noreferrer" className="hover:text-cream">
+                      <a href={s.href} target="_blank" rel="noopener noreferrer" className="hover:text-bordeaux">
                         {s.label}
                       </a>
                     </li>
@@ -113,17 +113,17 @@ export function Footer() {
                 </ul>
               </>
             )}
-            <h2 className="mb-5 font-sans text-xs font-bold uppercase tracking-[0.2em] text-copper">Informations</h2>
-            <ul className="space-y-3 text-cream/75">
+            <h2 className="mb-5 font-sans text-xs font-bold uppercase tracking-[0.2em] text-bronze">Informations</h2>
+            <ul className="space-y-3 text-stone">
               {legalNav.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:text-cream">
+                  <Link href={item.href} className="hover:text-bordeaux">
                     {item.label}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/politique-de-confidentialite#vos-droits" className="hover:text-cream">
+                <Link href="/politique-de-confidentialite#vos-droits" className="hover:text-bordeaux">
                   Vos données personnelles
                 </Link>
               </li>
@@ -131,7 +131,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-cream/10 pt-8 text-sm text-cream/50 sm:flex-row sm:justify-between">
+        <div className="mt-16 flex flex-col gap-3 border-t border-line pt-8 text-sm text-stone sm:flex-row sm:justify-between">
           <p>
             © <CopyrightYear /> {siteConfig.name}. Tous droits réservés.
           </p>

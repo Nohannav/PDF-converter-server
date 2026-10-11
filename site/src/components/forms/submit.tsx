@@ -56,7 +56,7 @@ export function SubmitButton({ submitting, children }: { submitting: boolean; ch
       type="submit"
       disabled={submitting}
       aria-busy={submitting}
-      className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-combi px-7 py-3 font-semibold text-cream shadow-[0_10px_30px_-12px_rgba(179,38,45,0.7)] transition-all hover:-translate-y-0.5 hover:bg-bordeaux disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0"
+      className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-bordeaux px-7 py-3 font-semibold text-paper shadow-[0_12px_28px_-14px_rgba(116,35,46,0.65)] transition-all hover:-translate-y-0.5 hover:bg-bordeaux-deep disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0"
     >
       {submitting && <Loader2 className="size-4 animate-spin" aria-hidden />}
       {submitting ? "Envoi en cours…" : children}
@@ -66,8 +66,8 @@ export function SubmitButton({ submitting, children }: { submitting: boolean; ch
 
 export function ErrorBanner({ message, mailto }: { message: string; mailto?: string | null }) {
   return (
-    <div role="alert" className="rounded-2xl border border-combi/30 bg-combi/5 p-5 text-sm leading-relaxed text-ink">
-      <p className="flex items-start gap-2 font-semibold text-combi">
+    <div role="alert" className="rounded-2xl border border-bordeaux/30 bg-bordeaux/5 p-5 text-sm leading-relaxed text-ink">
+      <p className="flex items-start gap-2 font-semibold text-bordeaux">
         <XCircle className="mt-0.5 size-5 shrink-0" aria-hidden /> Votre demande n&apos;a pas été envoyée.
       </p>
       <p className="mt-2">{message}</p>
@@ -84,12 +84,12 @@ export function ErrorBanner({ message, mailto }: { message: string; mailto?: str
 
 export function SuccessPanel({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div role="status" className="animate-rise-in rounded-3xl bg-ink p-8 text-cream sm:p-10">
-      <CheckCircle2 className="size-10 text-copper-light" aria-hidden />
+    <div role="status" className="animate-rise-in rounded-3xl bg-paper p-8 text-ink ring-1 ring-line sm:p-10">
+      <CheckCircle2 className="size-10 text-bordeaux" aria-hidden />
       <h3 tabIndex={-1} className="mt-5 text-3xl font-medium" data-autofocus>
         {title}
       </h3>
-      <div className="mt-4 space-y-3 leading-relaxed text-cream/80">{children}</div>
+      <div className="mt-4 space-y-3 leading-relaxed text-stone">{children}</div>
     </div>
   );
 }

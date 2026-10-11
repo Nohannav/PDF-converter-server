@@ -4,7 +4,7 @@ import { AlertCircle } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 export const inputClasses =
-  "block w-full min-h-12 rounded-xl border border-ink/15 bg-white px-4 py-3 text-base text-ink placeholder:text-stone/70 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)] transition-colors focus:border-copper focus:outline-none focus:ring-3 focus:ring-copper/25 aria-[invalid=true]:border-combi aria-[invalid=true]:ring-combi/15";
+  "block w-full min-h-12 rounded-xl border border-line bg-paper px-4 py-3 text-base text-ink placeholder:text-stone/70 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)] transition-colors focus:border-bordeaux focus:outline-none focus:ring-3 focus:ring-bordeaux/15 aria-[invalid=true]:border-bordeaux aria-[invalid=true]:ring-bordeaux/15";
 
 type FieldProps = {
   id: string;
@@ -42,7 +42,7 @@ export function Field({ id, label, error, hint, optional, className, children }:
 
 export function FieldError({ id, children }: { id: string; children: React.ReactNode }) {
   return (
-    <p id={id} className="flex items-start gap-1.5 text-sm font-medium text-combi">
+    <p id={id} className="flex items-start gap-1.5 text-sm font-medium text-bordeaux">
       <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden />
       {children}
     </p>
@@ -86,8 +86,8 @@ export function ChoiceGroup({
               key={option.value}
               className={cn(
                 "relative flex min-h-12 cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition-all",
-                "has-[:focus-visible]:ring-3 has-[:focus-visible]:ring-copper/40",
-                checked ? "border-ink bg-ink text-cream" : "border-ink/15 bg-white text-ink hover:border-ink/40",
+                "has-[:focus-visible]:ring-3 has-[:focus-visible]:ring-bordeaux/30",
+                checked ? "border-bordeaux bg-cream text-ink ring-1 ring-bordeaux" : "border-line bg-paper text-ink hover:border-ink/35",
               )}
             >
               <input
@@ -103,10 +103,10 @@ export function ChoiceGroup({
                 className={cn(
                   "flex size-4 shrink-0 items-center justify-center border",
                   type === "radio" ? "rounded-full" : "rounded",
-                  checked ? "border-copper bg-copper" : "border-ink/30",
+                  checked ? "border-bordeaux bg-bordeaux" : "border-ink/30",
                 )}
               >
-                {checked && <span className={cn("bg-ink", type === "radio" ? "size-1.5 rounded-full" : "size-2 rounded-[1px]")} />}
+                {checked && <span className={cn("bg-paper", type === "radio" ? "size-1.5 rounded-full" : "size-2 rounded-[1px]")} />}
               </span>
               {option.label}
             </label>
@@ -146,7 +146,7 @@ export function Checkbox({
           onChange={(e) => onChange(e.target.checked)}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? `${id}-error` : undefined}
-          className="mt-0.5 size-5 shrink-0 cursor-pointer rounded accent-combi"
+          className="mt-0.5 size-5 shrink-0 cursor-pointer rounded accent-bordeaux"
         />
         <span>{children}</span>
       </label>

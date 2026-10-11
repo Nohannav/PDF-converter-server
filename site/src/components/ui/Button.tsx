@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "secondary" | "ghost" | "light" | "outline-light";
+/**
+ * primary : action principale (bordeaux) — devis, envoi.
+ * secondary : action secondaire, contour sobre.
+ * ghost : lien discret.
+ */
+type Variant = "primary" | "secondary" | "ghost";
 type Size = "md" | "lg";
 
 const base =
@@ -9,11 +14,9 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-combi text-cream shadow-[0_10px_30px_-12px_rgba(179,38,45,0.7)] hover:bg-bordeaux hover:-translate-y-0.5",
-  secondary: "bg-ink text-cream hover:bg-smoke hover:-translate-y-0.5",
+    "bg-bordeaux text-paper shadow-[0_12px_28px_-14px_rgba(116,35,46,0.65)] hover:bg-bordeaux-deep hover:-translate-y-0.5",
+  secondary: "bg-paper text-ink ring-1 ring-ink/15 hover:ring-ink/40 hover:-translate-y-0.5",
   ghost: "text-ink underline-offset-4 hover:underline px-0! min-h-0!",
-  light: "bg-cream text-ink hover:bg-white hover:-translate-y-0.5",
-  "outline-light": "border border-cream/40 text-cream hover:border-cream hover:bg-cream/10",
 };
 
 const sizes: Record<Size, string> = {

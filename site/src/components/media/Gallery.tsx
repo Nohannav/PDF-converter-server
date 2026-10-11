@@ -63,7 +63,7 @@ export function Gallery({
               onClick={() => setActive(f.slug)}
               className={cn(
                 "min-h-11 shrink-0 rounded-full border px-5 text-sm font-semibold transition-colors",
-                active === f.slug ? "border-ink bg-ink text-cream" : "border-ink/15 text-ink hover:border-ink/50",
+                active === f.slug ? "border-bordeaux bg-bordeaux text-paper" : "border-line bg-paper text-ink hover:border-ink/40",
               )}
             >
               {f.label}
@@ -78,7 +78,7 @@ export function Gallery({
             <button
               type="button"
               onClick={() => setOpenIndex(index)}
-              className="group relative block w-full overflow-hidden rounded-2xl bg-sand text-left"
+              className="group block w-full overflow-hidden rounded-2xl bg-paper text-left ring-1 ring-line"
               aria-label={`Agrandir : ${item.caption}`}
             >
               <div className={cn("relative overflow-hidden", layout === "masonry" && index % 3 === 1 ? "aspect-[4/5]" : "aspect-[4/3]")}>
@@ -98,12 +98,12 @@ export function Gallery({
                   />
                 )}
               </div>
-              <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 bg-gradient-to-t from-ink/80 via-ink/30 to-transparent p-4 pt-12 text-sm font-semibold text-cream">
+              <span className="flex items-start justify-between gap-3 px-4 py-3.5 text-sm font-semibold text-ink">
                 <span>
                   {item.caption}
-                  {item.kind === "illustration" && <span className="block text-xs font-normal text-cream/70">Illustration — photo à venir</span>}
+                  {item.kind === "illustration" && <span className="block text-xs font-normal text-stone">Illustration — photo à venir</span>}
                 </span>
-                <Expand className="size-4 shrink-0 opacity-70 transition-opacity group-hover:opacity-100" aria-hidden />
+                <Expand className="mt-0.5 size-4 shrink-0 text-bordeaux opacity-60 transition-opacity group-hover:opacity-100" aria-hidden />
               </span>
             </button>
           </li>
@@ -122,15 +122,15 @@ export function Gallery({
         onClose={close}
         onClick={(e) => e.target === e.currentTarget && close()}
         aria-label={current ? current.caption : "Visionneuse"}
-        className="m-0 h-dvh max-h-none w-screen max-w-none bg-ink/95 p-0 text-cream backdrop:bg-ink/80 open:animate-fade-in"
+        className="m-0 h-dvh max-h-none w-screen max-w-none bg-cream/97 p-0 text-ink backdrop:bg-cream/80 open:animate-fade-in"
       >
         {current && (
           <div className="flex h-full flex-col" onClick={(e) => e.target === e.currentTarget && close()}>
             <div className="flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
-              <p className="text-sm text-cream/80" aria-live="polite">
+              <p className="text-sm text-stone" aria-live="polite">
                 {current.caption} · {openIndex! + 1}/{visible.length}
               </p>
-              <button type="button" onClick={close} className="inline-flex size-11 items-center justify-center rounded-full hover:bg-cream/10" aria-label="Fermer">
+              <button type="button" onClick={close} className="inline-flex size-11 items-center justify-center rounded-full hover:bg-ink/5" aria-label="Fermer">
                 <X className="size-6" />
               </button>
             </div>
@@ -149,7 +149,7 @@ export function Gallery({
                   <button
                     type="button"
                     onClick={() => step(-1)}
-                    className="absolute top-1/2 left-2 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-ink/60 hover:bg-ink sm:left-4"
+                    className="absolute top-1/2 left-2 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-paper text-ink shadow-md ring-1 ring-line hover:text-bordeaux sm:left-4"
                     aria-label="Image précédente"
                   >
                     <ChevronLeft className="size-6" />
@@ -157,7 +157,7 @@ export function Gallery({
                   <button
                     type="button"
                     onClick={() => step(1)}
-                    className="absolute top-1/2 right-2 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-ink/60 hover:bg-ink sm:right-4"
+                    className="absolute top-1/2 right-2 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-paper text-ink shadow-md ring-1 ring-line hover:text-bordeaux sm:right-4"
                     aria-label="Image suivante"
                   >
                     <ChevronRight className="size-6" />

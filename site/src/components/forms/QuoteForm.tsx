@@ -216,7 +216,7 @@ export function QuoteForm({
             <p>Un récapitulatif vous a été envoyé à l&apos;adresse {data.email} (pensez à vérifier vos courriers indésirables).</p>
           )}
           <p>
-            <Link href="/galerie" className="font-semibold text-copper-light underline underline-offset-4">
+            <Link href="/galerie" className="font-semibold text-bordeaux underline underline-offset-4">
               En attendant, découvrez la galerie
             </Link>
           </p>
@@ -226,19 +226,19 @@ export function QuoteForm({
   }
 
   return (
-    <div ref={rootRef} className="scroll-mt-28 rounded-3xl bg-paper p-5 shadow-[0_30px_80px_-40px_rgba(20,17,16,0.45)] ring-1 ring-ink/5 sm:p-8 lg:p-10">
+    <div ref={rootRef} className="scroll-mt-28 rounded-3xl bg-paper p-5 shadow-[0_30px_80px_-50px_rgba(35,29,25,0.4)] ring-1 ring-line sm:p-8 lg:p-10">
       {/* Indicateur de progression */}
       <ol className="mb-8 grid grid-cols-4 gap-2" aria-label="Étapes du formulaire">
         {STEPS.map((s, i) => (
           <li key={s.title} aria-current={i === step ? "step" : undefined}>
-            <span className={cn("block h-1.5 rounded-full transition-colors duration-500", i <= step ? "bg-combi" : "bg-ink/10")} />
+            <span className={cn("block h-1.5 rounded-full transition-colors duration-500", i <= step ? "bg-bordeaux" : "bg-sand")} />
             <span className={cn("mt-2 hidden text-xs font-semibold sm:block", i === step ? "text-ink" : "text-stone")}>
               {i + 1}. {s.title}
             </span>
           </li>
         ))}
       </ol>
-      <p className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-copper">
+      <p className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-bronze">
         Étape {step + 1} sur {STEPS.length}
       </p>
       <h3 data-step-title tabIndex={-1} className="mb-8 text-3xl font-medium focus:outline-none">
@@ -405,7 +405,7 @@ export function QuoteForm({
 
         {step === 3 && (
           <div key="s3" className="animate-rise-in space-y-6">
-            <dl className="divide-y divide-ink/10 rounded-2xl border border-ink/10 bg-white">
+            <dl className="divide-y divide-line rounded-2xl border border-line bg-cream/50">
               {summary
                 .filter(([, value]) => value)
                 .map(([label, value, target]) => (
@@ -446,7 +446,7 @@ export function QuoteForm({
           </div>
         )}
 
-        <div className="flex flex-col-reverse gap-3 border-t border-ink/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col-reverse gap-3 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
           {step > 0 ? (
             <button
               type="button"
@@ -464,7 +464,7 @@ export function QuoteForm({
           {step < STEPS.length - 1 ? (
             <button
               type="submit"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-7 py-3 font-semibold text-cream transition-all hover:-translate-y-0.5 hover:bg-smoke"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-bordeaux px-7 py-3 font-semibold text-paper transition-all hover:-translate-y-0.5 hover:bg-bordeaux-deep"
             >
               Continuer <ArrowRight className="size-4" aria-hidden />
             </button>

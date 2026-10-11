@@ -5,7 +5,7 @@ import { isSet, siteConfig, telHref } from "@/config/site";
 import { BookingEmbed } from "@/components/forms/BookingEmbed";
 import { CallbackForm } from "@/components/forms/CallbackForm";
 import { QuoteForm } from "@/components/forms/QuoteForm";
-import { Container, Section, SectionHeading } from "@/components/ui/Section";
+import { Container, Section, SectionHeading, Eyebrow } from "@/components/ui/Section";
 import { Faq } from "@/components/ui/Faq";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Breadcrumbs } from "@/components/sections/shared";
@@ -39,23 +39,23 @@ export default function ContactPage() {
   return (
     <>
       <JsonLd data={breadcrumbJsonLd([{ name: "Contact et devis", path: PATH }])} />
-      <section className="grain bg-ink pt-28 pb-16 text-cream lg:pt-36 lg:pb-20">
+      <section className="bg-cream pt-28 pb-16 text-ink lg:pt-36 lg:pb-20">
         <Container>
           <Breadcrumbs items={[{ name: "Contact et devis", path: PATH }]} />
           <div className="mt-8 max-w-3xl animate-rise-in">
-            <p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-copper-light">Contact & devis</p>
+            <Eyebrow>Contact & devis</Eyebrow>
             <h1 className="text-5xl leading-[1.02] font-medium sm:text-6xl lg:text-7xl">Parlons de votre événement</h1>
-            <p className="mt-6 text-lg leading-relaxed text-cream/80">
+            <p className="mt-6 text-lg leading-relaxed text-stone">
               Choisissez le moyen qui vous convient le mieux : nous vous répondons personnellement.
             </p>
           </div>
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {options.map((o) => (
               <li key={o.href}>
-                <a href={o.href} className="group flex h-full flex-col rounded-3xl bg-cream/5 p-6 ring-1 ring-cream/10 transition-colors hover:bg-cream/10">
-                  <o.icon className="size-6 text-copper-light" aria-hidden />
+                <a href={o.href} className="group flex h-full flex-col rounded-3xl bg-paper p-6 ring-1 ring-line transition-all hover:-translate-y-0.5 hover:ring-bordeaux/40">
+                  <o.icon className="size-6 text-bordeaux" aria-hidden />
                   <span className="mt-4 text-lg font-semibold">{o.title}</span>
-                  <span className="mt-1 text-sm leading-relaxed text-cream/65">{o.text}</span>
+                  <span className="mt-1 text-sm leading-relaxed text-stone">{o.text}</span>
                 </a>
               </li>
             ))}
@@ -98,13 +98,13 @@ export default function ContactPage() {
             />
           ) : (
             <div className="rounded-3xl bg-cream p-6 sm:p-8">
-              <CalendarDays className="size-9 text-combi" aria-hidden />
+              <CalendarDays className="size-9 text-bordeaux" aria-hidden />
               <p className="mt-4 text-lg font-semibold">La réservation en ligne arrive bientôt.</p>
               <p className="mt-2 leading-relaxed text-ink/75">
                 En attendant, indiquez-nous le jour et le moment qui vous conviennent grâce au formulaire de rappel
                 ci-dessous : nous vous recontactons pour fixer l&apos;échange.
               </p>
-              <a href="#rappel" className="mt-5 inline-flex min-h-11 items-center gap-2 font-semibold text-combi underline underline-offset-4">
+              <a href="#rappel" className="mt-5 inline-flex min-h-11 items-center gap-2 font-semibold text-bordeaux underline underline-offset-4">
                 <PhoneCall className="size-4" aria-hidden /> Demander à être rappelé(e)
               </a>
             </div>
@@ -132,7 +132,7 @@ export default function ContactPage() {
               {tel && (
                 <li>
                   <a href={tel} className="flex h-full items-start gap-4 rounded-3xl bg-cream p-6 hover:bg-sand">
-                    <Phone className="mt-1 size-5 text-combi" aria-hidden />
+                    <Phone className="mt-1 size-5 text-bordeaux" aria-hidden />
                     <span>
                       <span className="block text-sm text-stone">Téléphone</span>
                       <span className="text-lg font-semibold">{contact.phoneDisplay || contact.phone}</span>
@@ -147,7 +147,7 @@ export default function ContactPage() {
                     href={buildMailto(contact.email, "Demande d'information", "Bonjour,\n\nJe vous contacte au sujet d'un événement :\n\n- Type d'événement :\n- Date :\n- Lieu :\n- Nombre d'invités :\n\nMerci,\n")}
                     className="flex h-full items-start gap-4 rounded-3xl bg-cream p-6 hover:bg-sand"
                   >
-                    <Mail className="mt-1 size-5 text-combi" aria-hidden />
+                    <Mail className="mt-1 size-5 text-bordeaux" aria-hidden />
                     <span>
                       <span className="block text-sm text-stone">E-mail</span>
                       <span className="text-lg font-semibold break-all">{contact.email}</span>
@@ -157,7 +157,7 @@ export default function ContactPage() {
               )}
               {(isSet(address.city) || isSet(serviceArea.label)) && (
                 <li className="flex items-start gap-4 rounded-3xl bg-cream p-6 sm:col-span-2">
-                  <MapPin className="mt-1 size-5 text-combi" aria-hidden />
+                  <MapPin className="mt-1 size-5 text-bordeaux" aria-hidden />
                   <span>
                     {isSet(address.city) && (
                       <address className="text-lg font-semibold not-italic">

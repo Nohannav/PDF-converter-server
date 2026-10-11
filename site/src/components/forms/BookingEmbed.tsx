@@ -25,8 +25,8 @@ export function BookingEmbed({
 
   if (!loaded) {
     return (
-      <div className="flex flex-col items-start gap-5 rounded-3xl bg-paper p-6 ring-1 ring-ink/5 sm:p-8">
-        <CalendarDays className="size-9 text-combi" aria-hidden />
+      <div className="flex flex-col items-start gap-5 rounded-3xl bg-paper p-6 ring-1 ring-line sm:p-8">
+        <CalendarDays className="size-9 text-bordeaux" aria-hidden />
         <div>
           <p className="text-lg font-semibold">Échange téléphonique de {durationMinutes} minutes</p>
           <p className="mt-2 text-ink/75">
@@ -43,7 +43,7 @@ export function BookingEmbed({
           <button
             type="button"
             onClick={() => setLoaded(true)}
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-combi px-7 py-3 font-semibold text-cream transition-all hover:-translate-y-0.5 hover:bg-bordeaux"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-bordeaux px-7 py-3 font-semibold text-paper transition-all hover:-translate-y-0.5 hover:bg-bordeaux-deep"
           >
             <CalendarDays className="size-4" aria-hidden /> Voir les créneaux disponibles
           </button>
@@ -61,7 +61,7 @@ export function BookingEmbed({
   }
 
   return (
-    <div className="overflow-hidden rounded-3xl bg-white ring-1 ring-ink/10">
+    <div className="overflow-hidden rounded-3xl bg-paper ring-1 ring-line">
       <iframe
         src={embedUrl}
         title={`Réserver un appel avec l'agence (${provider})`}
@@ -69,7 +69,7 @@ export function BookingEmbed({
         loading="lazy"
         allow="payment"
       />
-      <p className="border-t border-ink/10 px-5 py-3 text-sm text-stone">
+      <p className="border-t border-line px-5 py-3 text-sm text-stone">
         Le calendrier ne s&apos;affiche pas ?{" "}
         <a href={url} target="_blank" rel="noopener noreferrer" className="font-semibold text-ink underline underline-offset-4">
           Ouvrez la page de réservation

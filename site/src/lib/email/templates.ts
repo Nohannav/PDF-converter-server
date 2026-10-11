@@ -36,16 +36,16 @@ type Row = [label: string, value: string];
 
 function render(title: string, intro: string, rows: Row[]) {
   const filled = rows.filter(([, v]) => v && v.trim().length > 0);
-  const html = `<!doctype html><html lang="fr"><body style="margin:0;background:#f6f0e6;font-family:Segoe UI,Arial,sans-serif;color:#141110">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f0e6;padding:24px 0"><tr><td align="center">
-<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#fffdf9;border-radius:14px;overflow:hidden">
-<tr><td style="background:#141110;color:#f6f0e6;padding:24px 28px;font-size:20px;font-weight:600">${escapeHtml(title)}</td></tr>
+  const html = `<!doctype html><html lang="fr"><body style="margin:0;background:#f6f1e8;font-family:Segoe UI,Arial,sans-serif;color:#231d19">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f1e8;padding:24px 0"><tr><td align="center">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:14px;overflow:hidden">
+<tr><td style="background:#74232e;color:#ffffff;padding:24px 28px;font-size:20px;font-weight:600">${escapeHtml(title)}</td></tr>
 <tr><td style="padding:24px 28px;font-size:15px;line-height:1.55">${escapeHtml(intro)}</td></tr>
 <tr><td style="padding:0 28px 28px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
 ${filled
   .map(
     ([label, value]) =>
-      `<tr><td style="padding:10px 12px 10px 0;border-top:1px solid #ece3d3;color:#6b625b;font-size:13px;vertical-align:top;width:38%">${escapeHtml(label)}</td><td style="padding:10px 0;border-top:1px solid #ece3d3;font-size:14px;white-space:pre-wrap">${escapeHtml(value)}</td></tr>`,
+      `<tr><td style="padding:10px 12px 10px 0;border-top:1px solid #e8ddcf;color:#6b625b;font-size:13px;vertical-align:top;width:38%">${escapeHtml(label)}</td><td style="padding:10px 0;border-top:1px solid #e8ddcf;font-size:14px;white-space:pre-wrap">${escapeHtml(value)}</td></tr>`,
   )
   .join("\n")}
 </table></td></tr></table></td></tr></table></body></html>`;

@@ -28,12 +28,12 @@ export function MobileCtaBar({ telHref }: { telHref: string | null }) {
       )}
       aria-hidden={!visible}
     >
-      <div className="flex gap-2 rounded-full bg-ink/95 p-1.5 shadow-2xl ring-1 ring-cream/10 backdrop-blur">
+      <div className="flex gap-2 rounded-full bg-paper/95 p-1.5 shadow-[0_12px_40px_-12px_rgba(35,29,25,0.35)] ring-1 ring-line backdrop-blur">
         {telHref ? (
           <a
             href={telHref}
             tabIndex={visible ? 0 : -1}
-            className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full text-sm font-semibold text-cream"
+            className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full text-sm font-semibold text-ink"
           >
             <Phone className="size-4" aria-hidden /> Appeler
           </a>
@@ -41,7 +41,7 @@ export function MobileCtaBar({ telHref }: { telHref: string | null }) {
           <Link
             href="/contact#rendez-vous"
             tabIndex={visible ? 0 : -1}
-            className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full text-sm font-semibold text-cream"
+            className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full text-sm font-semibold text-ink"
           >
             <CalendarDays className="size-4" aria-hidden /> Rendez-vous
           </Link>
@@ -49,7 +49,7 @@ export function MobileCtaBar({ telHref }: { telHref: string | null }) {
         <Link
           href="/contact#devis"
           tabIndex={visible ? 0 : -1}
-          className="flex min-h-12 flex-[1.4] items-center justify-center gap-2 rounded-full bg-combi text-sm font-semibold text-cream"
+          className="flex min-h-12 flex-[1.4] items-center justify-center gap-2 rounded-full bg-bordeaux text-sm font-semibold text-paper"
         >
           <FileText className="size-4" aria-hidden /> Demander un devis
         </Link>

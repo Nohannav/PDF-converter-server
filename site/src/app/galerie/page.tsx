@@ -1,5 +1,5 @@
 import { Gallery } from "@/components/media/Gallery";
-import { Container, Section } from "@/components/ui/Section";
+import { Container, Section, Eyebrow } from "@/components/ui/Section";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Breadcrumbs, FinalCta } from "@/components/sections/shared";
 import { getGalleryFilters, getGalleryItems } from "@/lib/media";
@@ -21,13 +21,13 @@ export default function GalleryPage() {
   return (
     <>
       <JsonLd data={breadcrumbJsonLd([{ name: "Galerie", path: PATH }])} />
-      <section className="grain bg-ink pt-28 pb-16 text-cream lg:pt-36 lg:pb-20">
+      <section className="bg-cream pt-28 pb-16 text-ink lg:pt-36 lg:pb-20">
         <Container>
           <Breadcrumbs items={[{ name: "Galerie", path: PATH }]} />
           <div className="mt-8 max-w-3xl animate-rise-in">
-            <p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-copper-light">Galerie</p>
+            <Eyebrow>Galerie</Eyebrow>
             <h1 className="text-5xl leading-[1.02] font-medium sm:text-6xl lg:text-7xl">Nos installations en images</h1>
-            <p className="mt-6 text-lg leading-relaxed text-cream/80">
+            <p className="mt-6 text-lg leading-relaxed text-stone">
               Le combi en configuration bar, DJ ou stand professionnel, et la mini-discothèque de jour comme de nuit.
               Cliquez sur une image pour l&apos;afficher en plein écran.
             </p>

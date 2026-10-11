@@ -49,7 +49,7 @@ export default function ProPage() {
         eyebrow="Entreprises & marques"
         title={
           <>
-            Un stand que l&apos;on <em className="font-light text-copper-light italic">n&apos;oublie pas</em>
+            Un stand que l&apos;on <em className="font-light text-bordeaux italic">n&apos;oublie pas</em>
           </>
         }
         intro="Salons, lancements, opérations de marque, soirées d'entreprise : le combi Volkswagen vintage devient un support de communication original qui attire le regard et facilite les rencontres."
@@ -60,7 +60,7 @@ export default function ProPage() {
             <ButtonLink href="#devis-pro" size="lg">
               Demander un devis entreprise <ArrowRight className="size-4" aria-hidden />
             </ButtonLink>
-            <ButtonLink href="/contact#rendez-vous" variant="outline-light" size="lg">
+            <ButtonLink href="/contact#rendez-vous" variant="secondary" size="lg">
               Échanger sur votre projet
             </ButtonLink>
           </>
@@ -77,7 +77,7 @@ export default function ProPage() {
         <ul className="grid gap-6 md:grid-cols-3">
           {benefits.map((b, i) => (
             <Reveal as="li" key={b.title} delay={i * 90} className="rounded-3xl bg-cream p-8">
-              <span className="flex size-12 items-center justify-center rounded-2xl bg-ink text-cream">
+              <span className="flex size-12 items-center justify-center rounded-2xl bg-bordeaux/10 text-bordeaux">
                 <b.icon className="size-6" aria-hidden />
               </span>
               <h3 className="mt-5 font-sans text-xl font-bold tracking-normal">{b.title}</h3>
@@ -87,15 +87,15 @@ export default function ProPage() {
         </ul>
       </Section>
 
-      <Section tone="ink" aria-labelledby="pro-usages-titre">
+      <Section tone="cream" aria-labelledby="pro-usages-titre">
         <SectionHeading id="pro-usages-titre" eyebrow="Cas d'usage" title="Pour quels événements professionnels ?" />
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {useCases.map((u, i) => (
-            <Reveal as="li" key={u.title} delay={(i % 3) * 90} className="overflow-hidden rounded-3xl bg-cream/5 ring-1 ring-cream/10">
+            <Reveal as="li" key={u.title} delay={(i % 3) * 90} className="overflow-hidden rounded-3xl bg-paper ring-1 ring-line">
               <Media media={resolveMedia(u.slot)} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="aspect-[16/10]" />
               <div className="p-6">
                 <h3 className="text-2xl font-medium">{u.title}</h3>
-                <p className="mt-2 leading-relaxed text-cream/70">{u.text}</p>
+                <p className="mt-2 leading-relaxed text-stone">{u.text}</p>
               </div>
             </Reveal>
           ))}

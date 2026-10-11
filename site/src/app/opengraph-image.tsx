@@ -17,22 +17,22 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "linear-gradient(135deg, #141110 0%, #2a1c16 100%)",
-          color: "#f6f0e6",
+          background: "#f6f1e8",
+          color: "#231d19",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <div style={{ width: 64, height: 64, borderRadius: 18, background: "#b3262d", display: "flex" }} />
+          <div style={{ width: 64, height: 64, borderRadius: 18, background: "#74232e", display: "flex" }} />
           <div style={{ fontSize: 34, fontWeight: 600 }}>{siteConfig.name}</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 76, lineHeight: 1.05, maxWidth: 950 }}>Faites de votre événement un moment inoubliable.</div>
-          <div style={{ marginTop: 28, fontSize: 30, color: "#e2b07c" }}>Combi Volkswagen bar & DJ · Mini-discothèque</div>
+          <div style={{ marginTop: 28, fontSize: 30, color: "#74232e" }}>Combi Volkswagen bar & DJ · Mini-discothèque</div>
         </div>
         <div style={{ display: "flex", height: 10, width: "100%" }}>
-          <div style={{ flex: 1, background: "#b3262d" }} />
-          <div style={{ flex: 1, background: "#f6f0e6" }} />
-          <div style={{ flex: 1, background: "#c38b55" }} />
+          <div style={{ flex: 1, background: "#74232e" }} />
+          <div style={{ flex: 1, background: "#ffffff" }} />
+          <div style={{ flex: 1, background: "#e5d7c6" }} />
         </div>
       </div>
     ),

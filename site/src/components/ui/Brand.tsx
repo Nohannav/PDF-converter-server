@@ -7,8 +7,8 @@ export function Marquee({ items, className }: { items: string[]; className?: str
     <ul aria-hidden={hidden || undefined} className="flex shrink-0 items-center">
       {items.map((item) => (
         <li key={item} className="flex items-center">
-          <span className="px-6 font-display text-3xl italic sm:px-10 sm:text-5xl">{item}</span>
-          <span aria-hidden className="text-xl text-copper-light sm:text-2xl">
+          <span className="px-6 font-display text-2xl font-light text-ink/85 italic sm:px-10 sm:text-4xl">{item}</span>
+          <span aria-hidden className="text-base text-bordeaux sm:text-lg">
             ✦
           </span>
         </li>
@@ -34,15 +34,15 @@ export function SpinningBadge({ text, className }: { text: string; className?: s
         <defs>
           <path id={id} d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0" />
         </defs>
-        <circle cx="60" cy="60" r="59" fill="#b3262d" />
-        <text fill="#f6f0e6" fontSize="9.5" fontWeight="700" style={{ textTransform: "uppercase" }}>
+        <circle cx="60" cy="60" r="59" fill="#74232e" />
+        <text fill="#f6f1e8" fontSize="9.5" fontWeight="700" style={{ textTransform: "uppercase" }}>
           {/* textLength ajuste l'espacement pour boucler exactement le cercle (2π × 46). */}
           <textPath href={`#${id}`} textLength="287" lengthAdjust="spacing">
             {text}
           </textPath>
         </text>
       </svg>
-      <span className="absolute inset-0 flex items-center justify-center font-display text-3xl text-cream italic">✦</span>
+      <span className="absolute inset-0 flex items-center justify-center font-display text-3xl text-[#f6f1e8] italic">✦</span>
     </div>
   );
 }
@@ -55,8 +55,8 @@ export function Awning({ className }: { className?: string }) {
       <svg className="size-full" preserveAspectRatio="none" viewBox="0 0 400 36">
         <defs>
           <pattern id={`${id}-s`} width="40" height="36" patternUnits="userSpaceOnUse">
-            <rect width="20" height="36" fill="#b3262d" />
-            <rect x="20" width="20" height="36" fill="#eadfcb" />
+            <rect width="20" height="36" fill="#74232e" />
+            <rect x="20" width="20" height="36" fill="#e5d7c6" />
           </pattern>
           <pattern id={`${id}-c`} width="20" height="36" patternUnits="userSpaceOnUse">
             <path d="M0 0 H20 V18 A10 10 0 0 1 0 18 Z" fill="white" />
@@ -76,7 +76,7 @@ export function Scribble({ children, className }: { children: React.ReactNode; c
   return (
     <span className={cn("relative inline-block whitespace-nowrap", className)}>
       {children}
-      <svg aria-hidden viewBox="0 0 200 20" preserveAspectRatio="none" className="scribble absolute -bottom-2 left-0 h-3 w-full text-combi sm:-bottom-3 sm:h-4">
+      <svg aria-hidden viewBox="0 0 200 20" preserveAspectRatio="none" className="scribble absolute -bottom-2 left-0 h-3 w-full text-bordeaux sm:-bottom-3 sm:h-4">
         <path d="M3 14 C 50 4, 110 3, 197 9" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" pathLength={1} strokeDasharray="1" />
       </svg>
     </span>
