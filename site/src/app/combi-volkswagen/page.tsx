@@ -177,10 +177,12 @@ export default function CombiPage() {
       </Section>
 
       {/* Galerie */}
+      {gallery.length > 0 && (
       <Section tone="paper" aria-labelledby="combi-galerie-titre">
         <SectionHeading id="combi-galerie-titre" eyebrow="Galerie" title="Le combi en images" />
         <Gallery items={gallery} layout="grid" />
       </Section>
+      )}
 
       {/* Modalités */}
       <Section tone="cream" aria-labelledby="modalites-titre">

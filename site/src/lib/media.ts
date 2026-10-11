@@ -3,7 +3,6 @@ import fs from "node:fs";
 import path from "node:path";
 import {
   galleryCategories,
-  galleryFallbacks,
   mediaSlots,
   type GalleryCategory,
   type MediaSlotKey,
@@ -49,6 +48,11 @@ function captionFromFilename(filename: string) {
   return base ? base.charAt(0).toUpperCase() + base.slice(1) : "";
 }
 
+/**
+ * Photos réelles déposées dans public/images/galerie/<catégorie>/.
+ * Tant qu'aucune photo n'est présente, la galerie est entièrement masquée
+ * (page, menu, sections et sitemap) : aucun visuel provisoire n'y est montré.
+ */
 export function getGalleryItems(): GalleryItem[] {
   const items: GalleryItem[] = [];
 
@@ -61,29 +65,25 @@ export function getGalleryItems(): GalleryItem[] {
           .sort()
       : [];
 
-    if (files.length > 0) {
-      for (const file of files) {
-        const caption = captionFromFilename(file) || label;
-        items.push({
-          kind: "photo",
-          id: `${slug}/${file}`,
-          category: slug,
-          src: `/images/galerie/${slug}/${encodeURIComponent(file)}`,
-          alt: `${label} — ${caption}`,
-          caption,
-        });
-      }
-      continue;
-    }
-
-    // Aucune photo dans la catégorie : illustrations provisoires éventuelles.
-    for (const fallback of galleryFallbacks.filter((f) => f.category === slug)) {
-      const media = resolveMedia(fallback.slot);
-      items.push({ ...media, id: `${slug}/${fallback.slot}`, category: slug, caption: fallback.caption });
+    for (const file of files) {
+      const caption = captionFromFilename(file) || label;
+      items.push({
+        kind: "photo",
+        id: `${slug}/${file}`,
+        category: slug,
+        src: `/images/galerie/${slug}/${encodeURIComponent(file)}`,
+        alt: `${label} — ${caption}`,
+        caption,
+      });
     }
   }
 
   return items;
+}
+
+/** La galerie s'affiche-t-elle ? (au moins une vraie photo déposée) */
+export function hasGallery() {
+  return getGalleryItems().length > 0;
 }
 
 /** Catégories ayant au moins un visuel (les filtres vides ne sont pas affichés). */

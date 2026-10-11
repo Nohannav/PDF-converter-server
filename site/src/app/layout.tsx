@@ -8,6 +8,8 @@ import { DevConfigNotice } from "@/components/layout/DevConfigNotice";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { SpotlightTracker } from "@/components/ui/Spotlight";
 import { organizationJsonLd } from "@/lib/seo";
+import { hasGallery } from "@/lib/media";
+import { mainNav } from "@/config/navigation";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -48,6 +50,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   const tel = telHref();
+  const nav = hasGallery() ? [...mainNav] : mainNav.filter((item) => item.href !== "/galerie");
   return (
     <html lang="fr" suppressHydrationWarning className={`${fraunces.variable} ${manrope.variable} antialiased`}>
       <head>
@@ -61,11 +64,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Aller au contenu
         </a>
-        <Header telHref={tel} phoneDisplay={siteConfig.contact.phoneDisplay || siteConfig.contact.phone} />
+        <Header nav={nav} telHref={tel} phoneDisplay={siteConfig.contact.phoneDisplay || siteConfig.contact.phone} />
         <main id="contenu" className="flex-1">
           {children}
         </main>
-        <Footer />
+        <Footer nav={nav} />
         <MobileCtaBar telHref={tel} />
         <DevConfigNotice />
         <SpotlightTracker />

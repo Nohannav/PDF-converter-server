@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { Gallery } from "@/components/media/Gallery";
 import { Container, Section, Eyebrow } from "@/components/ui/Section";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -16,6 +17,7 @@ export const metadata = pageMetadata({
 
 export default function GalleryPage() {
   const items = getGalleryItems();
+  if (items.length === 0) notFound();
   const filters = getGalleryFilters(items);
 
   return (

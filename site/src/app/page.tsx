@@ -230,7 +230,8 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Galerie */}
+      {/* Galerie : affichée uniquement lorsque de vraies photos sont disponibles */}
+      {galleryItems.length > 0 && (
       <Section tone="cream" aria-labelledby="galerie-titre">
         <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeading id="galerie-titre" eyebrow="Galerie" title="En images" className="mb-0! lg:mb-0!" />
@@ -242,6 +243,7 @@ export default function HomePage() {
           <Gallery items={galleryItems} layout="grid" />
         </div>
       </Section>
+      )}
 
       {/* Comment ça marche */}
       <Section tone="sand" aria-labelledby="process-titre">

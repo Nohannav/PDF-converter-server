@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { legalNav, mainNav } from "@/config/navigation";
+import { legalNav } from "@/config/navigation";
 import { isSet, siteConfig, socialLinks, telHref } from "@/config/site";
 import { Container } from "@/components/ui/Section";
 import { Logo } from "./Logo";
@@ -12,7 +12,7 @@ async function CopyrightYear() {
   return <>{new Date().getFullYear()}</>;
 }
 
-export function Footer() {
+export function Footer({ nav }: { nav: { href: string; label: string }[] }) {
   const { contact, address, serviceArea, openingHoursLabel } = siteConfig;
   const tel = telHref();
   const socials = socialLinks();
@@ -38,7 +38,7 @@ export function Footer() {
           <nav aria-label="Pages du site">
             <h2 className="mb-5 font-sans text-xs font-bold uppercase tracking-[0.2em] text-bronze">Le site</h2>
             <ul className="space-y-3 text-stone">
-              {[{ href: "/", label: "Accueil" }, ...mainNav].map((item) => (
+              {[{ href: "/", label: "Accueil" }, ...nav].map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="hover:text-bordeaux">
                     {item.label}

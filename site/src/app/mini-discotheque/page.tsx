@@ -129,10 +129,12 @@ export default function DiscoPage() {
         </ul>
       </Section>
 
+      {gallery.length > 0 && (
       <Section tone="cream" aria-labelledby="disco-galerie-titre">
         <SectionHeading id="disco-galerie-titre" eyebrow="Galerie" title="Dans l'ambiance" />
         <Gallery items={gallery} layout="grid" />
       </Section>
+      )}
 
       <Section tone="paper" aria-labelledby="disco-pratique-titre">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">

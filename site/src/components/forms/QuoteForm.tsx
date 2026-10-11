@@ -216,8 +216,8 @@ export function QuoteForm({
             <p>Un récapitulatif vous a été envoyé à l&apos;adresse {data.email} (pensez à vérifier vos courriers indésirables).</p>
           )}
           <p>
-            <Link href="/galerie" className="font-semibold text-bordeaux underline underline-offset-4">
-              En attendant, découvrez la galerie
+            <Link href="/#concepts" className="font-semibold text-bordeaux underline underline-offset-4">
+              Revoir nos concepts
             </Link>
           </p>
         </SuccessPanel>

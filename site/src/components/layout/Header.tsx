@@ -4,12 +4,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Menu, Phone, X } from "lucide-react";
-import { mainNav } from "@/config/navigation";
 import { buttonClasses } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 import { Logo } from "./Logo";
 
-export function Header({ telHref, phoneDisplay }: { telHref: string | null; phoneDisplay: string }) {
+export function Header({
+  nav,
+  telHref,
+  phoneDisplay,
+}: {
+  nav: { href: string; label: string }[];
+  telHref: string | null;
+  phoneDisplay: string;
+}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -78,7 +85,7 @@ export function Header({ telHref, phoneDisplay }: { telHref: string | null; phon
 
         <nav aria-label="Navigation principale" className="hidden lg:block">
           <ul className="flex items-center gap-1">
-            {mainNav.map((item) => (
+            {nav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
@@ -122,7 +129,7 @@ export function Header({ telHref, phoneDisplay }: { telHref: string | null; phon
       >
         <nav aria-label="Navigation mobile" className="px-5 pt-6 pb-10 sm:px-8">
           <ul className="space-y-1">
-            {[{ href: "/", label: "Accueil" }, ...mainNav].map((item, i) => (
+            {[{ href: "/", label: "Accueil" }, ...nav].map((item, i) => (
               <li key={item.href} className="animate-rise-in" style={{ animationDelay: `${i * 40}ms` }}>
                 <Link
                   href={item.href}

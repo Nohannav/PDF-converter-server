@@ -102,15 +102,3 @@ export const galleryCategories = [
 
 export type GalleryCategory = (typeof galleryCategories)[number]["slug"];
 
-/**
- * Illustrations provisoires montrées dans la galerie tant qu'aucune photo
- * n'a été déposée dans la catégorie correspondante.
- */
-export const galleryFallbacks: { category: GalleryCategory; slot: MediaSlotKey; caption: string }[] = [
-  { category: "combi-bar", slot: "combiBar", caption: "Le combi en configuration bar" },
-  { category: "combi-bar", slot: "combiClosed", caption: "Le combi Volkswagen, fermé" },
-  { category: "dj-soirees", slot: "combiDj", caption: "Le combi en configuration DJ" },
-  { category: "mini-discotheque", slot: "discoExterior", caption: "La mini-discothèque, de nuit" },
-  { category: "mini-discotheque", slot: "discoDancefloor", caption: "La piste de danse" },
-  { category: "evenements-pro", slot: "combiPro", caption: "Le combi sur un événement professionnel" },
-];

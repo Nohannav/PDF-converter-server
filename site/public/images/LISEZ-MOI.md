@@ -45,8 +45,11 @@ Déposez autant de photos que souhaité dans les dossiers de `galerie/` :
 - `galerie/evenements-pro/`
 
 Le nom du fichier sert de légende : `mariage-domaine-des-pins-01.jpg` → « Mariage domaine des pins ».
-Un filtre n'apparaît que si sa catégorie contient au moins un visuel. Dès qu'une catégorie contient
-une photo, ses illustrations provisoires disparaissent de la galerie.
+
+**Tant qu'aucune photo n'est déposée, la galerie est entièrement masquée** : pas de lien « Galerie »
+dans le menu, pas de section galerie sur les pages, page `/galerie` en 404 et absente du sitemap.
+Elle réapparaît automatiquement au prochain build dès qu'une photo est ajoutée. Un filtre n'apparaît
+que si sa catégorie contient au moins une photo. Aucune illustration provisoire n'est montrée dans la galerie.
 
 ## Règles
 

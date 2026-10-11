@@ -54,7 +54,7 @@ navigateur/serveur), Resend ou SMTP via Nodemailer, Lucide (icônes). Pas de bas
 | `/combi-volkswagen`             | Concept, configurations bar / DJ / pro / sur mesure, usages, galerie, modalités, FAQ, devis prérempli « Combi » |
 | `/mini-discotheque`             | Page nocturne : concept, expérience, événements, galerie, infos pratiques, FAQ, devis prérempli « Mini-discothèque » |
 | `/evenements-professionnels`    | Bénéfices, cas d'usage entreprises, FAQ, formulaire pro (entreprise obligatoire) |
-| `/galerie`                      | Galerie filtrable + visionneuse plein écran (clavier, Échap)              |
+| `/galerie`                      | Galerie filtrable + visionneuse plein écran — **masquée (404, hors menu et sitemap) tant qu'aucune vraie photo n'est déposée** |
 | `/contact`                      | Devis (4 étapes + récapitulatif), rendez-vous, rappel, coordonnées        |
 | `/mentions-legales`, `/politique-de-confidentialite` | Modèles à compléter et faire vérifier                  |
 | 404, `sitemap.xml`, `robots.txt`, image Open Graph | Générés automatiquement                                |

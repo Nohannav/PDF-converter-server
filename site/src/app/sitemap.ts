@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/config/site";
+import { hasGallery } from "@/lib/media";
 
 const routes: { path: string; priority: number; changeFrequency: "monthly" | "yearly" }[] = [
   { path: "/", priority: 1, changeFrequency: "monthly" },
@@ -13,7 +14,8 @@ const routes: { path: string; priority: number; changeFrequency: "monthly" | "ye
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map((r) => ({
+  const gallery = hasGallery();
+  return routes.filter((r) => gallery || r.path !== "/galerie").map((r) => ({
     url: absoluteUrl(r.path),
     changeFrequency: r.changeFrequency,
     priority: r.priority,
